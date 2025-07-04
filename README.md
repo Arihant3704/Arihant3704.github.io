@@ -44,4 +44,3 @@ To run this project locally:
 ---
 
 Thank you for visiting my portfolio!
-
