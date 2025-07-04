@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation Environment - Aerothon 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 2rem 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/><polygon fill="rgba(255,255,255,0.03)" points="0,800 1000,600 1000,1000 0,1000"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Overview Cards */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .overview-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overview-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .overview-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Technology Stack */
+        .tech-stack {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 2rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+
+        .tech-logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .tech-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Process Flow */
+        .process-flow {
+            background: white;
+            padding: 5rem 2rem;
+        }
+
+        .flow-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .flow-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .flow-step:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .flow-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .flow-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .flow-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Achievements */
+        .achievements {
+            background: #f8f9fa;
+            padding: 5rem 2rem;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .achievement-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-label {
+            font-size: 1.1rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .achievement-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Media Gallery */
+        .media-gallery {
+            background: white;
+            padding: 5rem 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .media-item {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .media-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .media-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .media-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+            display: block;
+        }
+
+        .media-content {
+            padding: 1.5rem;
+        }
+
+        .media-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .media-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .flow-container {
+                flex-direction: column;
+            }
+            
+            .flow-step:not(:last-child)::after {
+                content: '↓';
+                right: 50%;
+                top: 100%;
+                transform: translateX(50%);
+            }
+            
+            .overview-grid,
+            .tech-grid,
+            .achievement-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Aerothon 2025</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="flight-operations.html">Flight Operations</a></li>
+                <li><a href="simulation.html" class="active">Simulation</a></li>
+                <li><a href="testing.html">Design & Analysis</a></li>
+                <li><a href="technical.html">Technical Deep Dive</a></li>
+                <li><a href="innovation.html">Innovation</a></li>
+                <li><a href="team.html">Team</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Simulation and Synthetic Data Generation</h1>
+            <p>Advanced simulation of UAV in 3D environment using MATLAB Roadrunner, Gazebo, and ROS integration for autonomous mission testing and ML model training</p>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Simulation Overview</h2>
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <span class="card-icon">🏗️</span>
+                    <h3 class="card-title">Virtual Environment Creation</h3>
+                    <p class="card-description">Realistic 3D environments built using MATLAB Roadrunner, featuring accurate terrain modeling, weather conditions, and obstacle placement for comprehensive testing scenarios.</p>
+                </div>
+                
+                <div class="overview-card">
+                    <span class="card-icon">🤖</span>
+                    <h3 class="card-title">Autonomous Mission Testing</h3>
+                    <p class="card-description">Complete autonomous flight missions simulated in Gazebo with ROS integration, testing navigation algorithms, obstacle avoidance, and mission execution protocols.</p>
+                </div>
+                
+                <div class="overview-card">
+                    <span class="card-icon">📊</span>
+                    <h3 class="card-title">Synthetic Data Generation</h3>
+                    <p class="card-description">Large-scale synthetic dataset creation for machine learning model training, including varied lighting conditions, weather scenarios, and terrain types.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="tech-stack">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Technology Stack</h2>
+            <p style="text-align: center; font-size: 1.1rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">
+                Our simulation environment leverages industry-leading tools and frameworks for maximum fidelity and integration capabilities.
+            </p>
+            
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <span class="tech-logo">🛣️</span>
+                    <h3 class="tech-name">MATLAB Roadrunner</h3>
+                    <p class="tech-description">3D scene creation and road network modeling for realistic environment simulation</p>
+                </div>
+                
+                <div class="tech-card">
+                    <span class="tech-logo">🏭</span>
+                    <h3 class="tech-name">Gazebo</h3>
+                    <p class="tech-description">Physics-based robot simulation with accurate sensor modeling and dynamics</p>
+                </div>
+                
+                <div class="tech-card">
+                    <span class="tech-logo">🤖</span>
+                    <h3 class="tech-name">ROS (Robot Operating System)</h3>
+                    <p class="tech-description">Middleware framework for robot communication and system integration</p>
+                </div>
+                
+                <div class="tech-card">
+                    <span class="tech-logo">🧠</span>
+                    <h3 class="tech-name">Machine Learning Pipeline</h3>
+                    <p class="tech-description">Integrated ML training pipeline for computer vision and autonomous navigation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Flow -->
+    <section class="process-flow">
+        <div class="container">
+            <h2 class="section-title">Simulation Workflow</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto;">
+                Our comprehensive simulation pipeline from environment creation to model validation
+            </p>
+            
+            <div class="flow-container">
+                <div class="flow-step">
+                    <div class="flow-icon">🏗️</div>
+                    <h3 class="flow-title">Environment Design</h3>
+                    <p class="flow-description">Create realistic 3D environments using MATLAB Roadrunner with terrain, obstacles, and weather conditions</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-icon">⚙️</div>
+                    <h3 class="flow-title">Gazebo Integration</h3>
+                    <p class="flow-description">Import environments into Gazebo with physics simulation and sensor modeling for drone testing</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-icon">🔄</div>
+                    <h3 class="flow-title">ROS Communication</h3>
+                    <p class="flow-description">Establish ROS nodes for data exchange between simulation components and control systems</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-icon">📊</div>
+                    <h3 class="flow-title">Data Collection</h3>
+                    <p class="flow-description">Generate synthetic datasets and collect performance metrics from autonomous mission runs</p>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-icon">🎯</div>
+                    <h3 class="flow-title">Model Training</h3>
+                    <p class="flow-description">Train ML models using synthetic data and validate performance in simulated scenarios</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section class="achievements">
+        <div class="container">
+            <h2 class="section-title">Our Achievements</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto;">
+                Highlights of our team's success in various competitions.
+            </p>
+            <div class="achievement-grid">
+                <div class="achievement-card">
+                    <h3 class="achievement-label">ADDC AIR 2 (2024)</h3>
+                    <p class="achievement-description">The Team Successfully Secured All India Rank of #2 out of 60 teams in Overall Performance and #2 for the best payload dropping mechanism for 2nd time in a row, which was their 2nd participation. Thus bagging a cash prize of 40,000 rupees.</p>
+                </div>
+                <div class="achievement-card">
+                    <h3 class="achievement-label">Aerothon 2024</h3>
+                    <p class="achievement-description">The Team Successfully Secured All India Rank of #3 out of 98 teams in Overall Performance thus bagging a cash prize of 75,000 rupees.</p>
+                </div>
+                <div class="achievement-card">
+                    <h3 class="achievement-label">Team Aerokle</h3>
+                    <p class="achievement-description">Proud member of <a href="https://aerokle.in/team" target="_blank">Aerokle</a>. See our achievements at <a href="https://aerokle.in/achievements" target="_blank">Aerokle Achievements</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Gallery -->
+    <section class="media-gallery">
+        <div class="container">
+            <h2 class="section-title">Simulation Media</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto;">
+                Visual documentation of our simulation environments, testing scenarios, and results
+            </p>
+            
+            <div class="gallery-grid">
+                <div class="media-item">
+                    <div class="media-placeholder">
+                        <video class="media-video" autoplay muted loop playsinline>
+                            <source src="videos/sim.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="media-content">
+                        <h3 class="media-title">ROS2 Gazebo Object Detection Simulation</h3>
+                        <p class="media-description">Advanced simulation of object detection for Aerothon 2024 using ROS2 and Gazebo, demonstrating robust autonomous capabilities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #333; color: white; text-align: center; padding: 2rem;">
+        <div class="container">
+            <p>&copy; 2025 aeroKLE Team. Advanced simulation for aerospace innovation.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Add animation to cards when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.overview-card, .tech-card, .achievement-card, .media-item, .flow-step').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Counter animation for achievement numbers
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                if (target >= 1000) {
+                    element.textContent = Math.floor(current / 1000) + 'K+';
+                } else if (target >= 100) {
+                    element.textContent = Math.floor(current) + '+';
+                } else {
+                    element.textContent = Math.floor(current) + (target === 95 ? '%' : '');
+                }
+            }, 20);
+        }
+
+        // Animate counters when achievement section comes into view
+        const achievementObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numbers = entry.target.querySelectorAll('.achievement-number');
+                    const targets = [50000, 25, 12, 95, 100, 8];
+                    
+                    numbers.forEach((number, index) => {
+                        animateCounter(number, targets[index]);
+                    });
+                    
+                    achievementObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const achievementsSection = document.querySelector('.achievements');
+        if (achievementsSection) {
+            achievementObserver.observe(achievementsSection);
+        }
+    </script>
+</body>
+</html>

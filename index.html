@@ -6,35 +6,7 @@
     <title>Arihant's Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Custom CSS for animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 1s ease-out forwards;
-            opacity: 0; /* Start hidden */
-        }
-        
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-gray-50 font-sans antialiased">
     <!-- Navigation -->
@@ -48,6 +20,9 @@
                     <a href="#home" class="text-gray-700 hover:text-blue-600 transition">Home</a>
                     <a href="#projects" class="text-gray-700 hover:text-blue-600 transition">Projects</a>
                     <a href="#certificates" class="text-gray-700 hover:text-blue-600 transition">Certificates</a>
+                    <a href="#competitions" class="text-gray-700 hover:text-blue-600 transition">Competitions</a>
+                    <a href="#research-papers" class="text-gray-700 hover:text-blue-600 transition">Research Papers</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition">Contact</a>
                     <a href="#about" class="text-gray-700 hover:text-blue-600 transition">About</a>
                 </div>
                 <div class="md:hidden flex items-center">
@@ -63,6 +38,9 @@
             <a href="#home" class="block py-2 text-gray-700 hover:text-blue-600 transition">Home</a>
             <a href="#projects" class="block py-2 text-gray-700 hover:text-blue-600 transition">Projects</a>
             <a href="#certificates" class="block py-2 text-gray-700 hover:text-blue-600 transition">Certificates</a>
+            <a href="#competitions" class="block py-2 text-gray-700 hover:text-blue-600 transition">Competitions</a>
+            <a href="#research-papers" class="block py-2 text-gray-700 hover:text-blue-600 transition">Research Papers</a>
+            <a href="#contact" class="block py-2 text-gray-700 hover:text-blue-600 transition">Contact</a>
             <a href="#about" class="block py-2 text-gray-700 hover:text-blue-600 transition">About</a>
         </div>
     </nav>
@@ -119,7 +97,7 @@
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Object Detection on Laptop</h3>
                         <p class="text-gray-600 mb-4">Real-time object detection running on a laptop, showcasing model performance.</p>
                         <div class="flex space-x-3">
-                            <a href="dectionlaptopfps13.webm" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
+                            <a href="videos/dectionlaptopfps13.webm" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
                                 <i class="fas fa-external-link-alt mr-1"></i> View Demo
                             </a>
                         </div>
@@ -135,7 +113,7 @@
                         <h3 class="text-xl font-bold text-gray-800 mb-2">No-Code ML Training App</h3>
                         <p class="text-gray-600 mb-4">A user-friendly application for training machine learning models without writing code.</p>
                         <div class="flex space-x-3">
-                            <a href="No-code-ml-mpodel-training-app.mp4" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
+                            <a href="videos/No-code-ml-mpodel-training-app.mp4" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
                                 <i class="fas fa-external-link-alt mr-1"></i> View Demo
                             </a>
                         </div>
@@ -151,7 +129,7 @@
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Object Detection Website</h3>
                         <p class="text-gray-600 mb-4">A web-based interface for interacting with an object detection model.</p>
                         <div class="flex space-x-3">
-                            <a href="objectdectionwebsite.mp4" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
+                            <a href="videos/objectdectionwebsite.mp4" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
                                 <i class="fas fa-external-link-alt mr-1"></i> View Demo
                             </a>
                         </div>
@@ -167,7 +145,7 @@
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Predicting Car Prices</h3>
                         <p class="text-gray-600 mb-4">A machine learning model to predict car prices based on various features.</p>
                         <div class="flex space-x-3">
-                            <a href="Predicting _car_prices ML.mp4" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
+                            <a href="videos/Predicting _car_prices ML.mp4" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
                                 <i class="fas fa-external-link-alt mr-1"></i> View Demo
                             </a>
                         </div>
@@ -183,7 +161,7 @@
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Under Vehicle Object Detection</h3>
                         <p class="text-gray-600 mb-4">Object detection on a Raspberry Pi camera for under-vehicle inspection.</p>
                         <div class="flex space-x-3">
-                            <a href="under vechicle object dection on rasbeery pi cam.webm" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
+                            <a href="videos/under vechicle object dection on rasbeery pi cam.webm" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
                                 <i class="fas fa-external-link-alt mr-1"></i> View Demo
                             </a>
                         </div>
@@ -199,7 +177,7 @@
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Wire Cutting Machine</h3>
                         <p class="text-gray-600 mb-4">A demonstration of an automated wire cutting machine.</p>
                         <div class="flex space-x-3">
-                            <a href="wire cutting machine.mp4" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
+                            <a href="videos/wire cutting machine.mp4" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
                                 <i class="fas fa-external-link-alt mr-1"></i> View Demo
                             </a>
                         </div>
@@ -215,9 +193,24 @@
                         <h3 class="text-xl font-bold text-gray-800 mb-2">YOLOv5 on FPGA</h3>
                         <p class="text-gray-600 mb-4">Hardware-accelerated YOLOv5 implementation on an FPGA.</p>
                         <div class="flex space-x-3">
-                            <a href="yolov5 on fpga using hardware accellerator.mp4" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
+                            <a href="videos/yolov5 on fpga using hardware accellerator.mp4" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
                                 <i class="fas fa-external-link-alt mr-1"></i> View Demo
                          
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 8 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 fade-in delay-2">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-indigo-600 flex items-center justify-center">
+                        <i class="fas fa-robot text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">ROS2 Gazebo Simulation</h3>
+                        <p class="text-gray-600 mb-4">Advanced simulation of UAV in 3D environment using ROS2 and Gazebo for autonomous mission testing and ML model training.</p>
+                        <div class="flex space-x-3">
+                            <a href="simulation.html" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> View Details
                             </a>
                         </div>
                     </div>
@@ -267,6 +260,22 @@
                     <i class="fab fa-raspberry-pi text-4xl text-pink-600 mb-3"></i>
                     <h3 class="font-bold text-gray-800">Raspberry Pi</h3>
                 </div>
+                <div class="bg-gray-100 p-6 rounded-xl text-center card-hover transition duration-300 fade-in delay-1">
+                    <i class="fas fa-plane-departure text-4xl text-blue-600 mb-3"></i>
+                    <h3 class="font-bold text-gray-800">Avionics in Drone</h3>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-xl text-center card-hover transition duration-300 fade-in delay-2">
+                    <i class="fas fa-robot text-4xl text-green-600 mb-3"></i>
+                    <h3 class="font-bold text-gray-800">ROS2</h3>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-xl text-center card-hover transition duration-300 fade-in delay-3">
+                    <i class="fas fa-cube text-4xl text-purple-600 mb-3"></i>
+                    <h3 class="font-bold text-gray-800">Gazebo</h3>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-xl text-center card-hover transition duration-300 fade-in delay-4">
+                    <i class="fas fa-microchip text-4xl text-green-600 mb-3"></i>
+                    <h3 class="font-bold text-gray-800">Jetson Orin</h3>
+                </div>
             </div>
         </div>
     </section>
@@ -285,7 +294,7 @@
                     <div class="p-6 text-center">
                         <i class="fas fa-award text-yellow-500 text-5xl mb-4"></i>
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Machine Learning Onramp</h3>
-                        <a href="ARIHANT CERTIFICATE/MachineLearningOnrampcertificate.pdf" target="_blank" class="text-blue-600 hover:text-blue-800">View Certificate</a>
+                        <a href="certificates/MachineLearningOnrampcertificate.pdf" target="_blank" class="text-blue-600 hover:text-blue-800">View Certificate</a>
                     </div>
                 </div>
                 <!-- Certificate 2 -->
@@ -293,7 +302,7 @@
                     <div class="p-6 text-center">
                         <i class="fas fa-award text-yellow-500 text-5xl mb-4"></i>
                         <h3 class="text-xl font-bold text-gray-800 mb-2">MATLAB Coder Onramp</h3>
-                        <a href="ARIHANT CERTIFICATE/MATLABCoderOnrampcertificate.pdf" target="_blank" class="text-blue-600 hover:text-blue-800">View Certificate</a>
+                        <a href="certificates/MATLABCoderOnrampcertificate.pdf" target="_blank" class="text-blue-600 hover:text-blue-800">View Certificate</a>
                     </div>
                 </div>
                 <!-- Certificate 3 -->
@@ -301,7 +310,7 @@
                     <div class="p-6 text-center">
                         <i class="fas fa-award text-yellow-500 text-5xl mb-4"></i>
                         <h3 class="text-xl font-bold text-gray-800 mb-2">MATLAB Onramp</h3>
-                        <a href="ARIHANT CERTIFICATE/MATLABOnrampcertificate.pdf" target="_blank" class="text-blue-600 hover:text-blue-800">View Certificate</a>
+                        <a href="certificates/MATLABOnrampcertificate.pdf" target="_blank" class="text-blue-600 hover:text-blue-800">View Certificate</a>
                     </div>
                 </div>
                 <!-- Certificate 4 -->
@@ -309,7 +318,7 @@
                     <div class="p-6 text-center">
                         <i class="fas fa-award text-yellow-500 text-5xl mb-4"></i>
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Simulink Onramp</h3>
-                        <a href="ARIHANT CERTIFICATE/Simulinkcertificate.pdf" target="_blank" class="text-blue-600 hover:text-blue-800">View Certificate</a>
+                        <a href="certificates/Simulinkcertificate.pdf" target="_blank" class="text-blue-600 hover:text-blue-800">View Certificate</a>
                     </div>
                 </div>
                 <!-- Certificate 5 -->
@@ -317,7 +326,7 @@
                     <div class="p-6 text-center">
                         <i class="fas fa-award text-yellow-500 text-5xl mb-4"></i>
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Stateflow Onramp</h3>
-                        <a href="ARIHANT CERTIFICATE/Stateflowcertificate.pdf" target="_blank" class="text-blue-600 hover:text-blue-800">View Certificate</a>
+                        <a href="certificates/Stateflowcertificate.pdf" target="_blank" class="text-blue-600 hover:text-blue-800">View Certificate</a>
                     </div>
                 </div>
                 <!-- Certificate 6 -->
@@ -325,8 +334,87 @@
                     <div class="p-6 text-center">
                         <i class="fas fa-award text-yellow-500 text-5xl mb-4"></i>
                         <h3 class="text-xl font-bold text-gray-800 mb-2">VLM Bootcamp</h3>
-                        <a href="ARIHANT CERTIFICATE/VLM Bootcamp Free VLM Bootcamp Certificate _ OpenCV.pdf" target="_blank" class="text-blue-600 hover:text-blue-800">View Certificate</a>
+                        <a href="certificates/VLM Bootcamp Free VLM Bootcamp Certificate _ OpenCV.pdf" target="_blank" class="text-blue-600 hover:text-blue-800">View Certificate</a>
                     </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <!-- Competitions Section -->
+    <section id="competitions" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">My <span class="gradient-text">Competitions</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Here are some of the competitions I've participated in and our team's achievements.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- ADDC AIR 2 Competition -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 fade-in delay-1">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">ADDC AIR 2 (2024)</h3>
+                        <p class="text-gray-600 mb-4">The Team Successfully Secured All India Rank of #2 out of 60 teams in Overall Performance and #2 for the best payload dropping mechanism for 2nd time in a row, which was their 2nd participation. Thus bagging a cash prize of 40,000 rupees.</p>
+                        <img src="images/2024_award_ceremony.jpg" alt="ADDC 2024 Award Ceremony" class="mx-auto mt-4 rounded-lg shadow-md" style="max-width: 100%; height: auto;">
+                    </div>
+                </div>
+                
+                <!-- Aerothon 2024 Competition -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 fade-in delay-2">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Aerothon 2024</h3>
+                        <p class="text-gray-600 mb-4">The Team Successfully Secured All India Rank of #3 out of 98 teams in Overall Performance thus bagging a cash prize of 75,000 rupees.</p>
+                        <img src="images/2024_aerothon_award_ceremony.jpg" alt="Aerothon 2024 Award Ceremony" class="mx-auto mt-4 rounded-lg shadow-md" style="max-width: 100%; height: auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Research Papers Section -->
+    <section id="research-papers" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">My <span class="gradient-text">Research Papers</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Here you can find details about my research contributions and publications.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Placeholder for Research Paper 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 fade-in delay-1">
+                    <div class="p-6 text-center">
+                        <img src="certificates/research paper certificate.png" alt="Research Paper Certificate" class="mx-auto mb-4 rounded-lg shadow-md" style="max-width: 100%; height: auto;">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Research Paper Certificate</h3>
+                        <p class="text-gray-600 mb-4">This certificate acknowledges participation or achievement related to a research paper. Further analysis of its content (e.g., title, authors, event) can be added here.</p>
+                        <a href="certificates/research paper certificate.png" target="_blank" class="text-blue-600 hover:text-blue-800">View Certificate Image</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In <span class="gradient-text">Touch</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-100 p-6 rounded-xl text-center card-hover transition duration-300 fade-in delay-1">
+                    <i class="fas fa-envelope text-blue-600 text-5xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Email Me</h3>
+                    <p class="text-gray-600 mb-4">arihantappannavar@gmail.com</p>
+                    <a href="mailto:arihantappannavar@gmail.com" class="text-blue-600 hover:text-blue-800">Send Email</a>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-xl text-center card-hover transition duration-300 fade-in delay-2">
+                    <i class="fas fa-phone-alt text-green-600 text-5xl mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Call Me</h3>
+                    <p class="text-gray-600 mb-4">+91 7349750571</p>
+                    <a href="tel:+917349750571" class="text-blue-600 hover:text-blue-800">Call Now</a>
                 </div>
             </div>
         </div>
@@ -344,71 +432,6 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script>
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Back to top button
-        const backToTopBtn = document.getElementById('back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.remove('opacity-0', 'invisible');
-                backToTopBtn.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopBtn.classList.remove('opacity-100', 'visible');
-                backToTopBtn.classList.add('opacity-0', 'invisible');
-            }
-        });
-        
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Intersection Observer for animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-        
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                }
-            });
-        });
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
