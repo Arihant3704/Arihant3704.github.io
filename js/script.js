@@ -69,3 +69,32 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Video Playback Handling
+document.querySelectorAll('.group').forEach(container => {
+    const video = container.querySelector('video');
+    const overlay = container.querySelector('.absolute');
+
+    if (video && overlay) {
+        // Play video when overlay is clicked
+        overlay.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent bubbling if needed
+            video.play();
+            overlay.classList.add('hidden'); // Hide overlay
+            video.controls = true; // Ensure controls are active
+        });
+
+        // Show overlay again when video ends
+        video.addEventListener('ended', () => {
+            overlay.classList.remove('hidden');
+            video.currentTime = 0;
+            // video.load(); // Optional: reset thumbnail
+        });
+        
+        // Optional: If user pauses manually, maybe show overlay? 
+        // Let's keep it simple: only show on end.
+        
+        // Allow clicking the video itself to toggle play/pause if controls are hidden?
+        // With 'controls' attribute, browser handles clicks on the video usually.
+    }
+});
