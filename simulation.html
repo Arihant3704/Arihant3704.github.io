@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +28,7 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
         .nav-container {
@@ -109,7 +110,7 @@
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero p {
@@ -119,7 +120,7 @@
         }
 
         .breadcrumb {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             padding: 0.5rem 1rem;
             border-radius: 20px;
             display: inline-block;
@@ -170,7 +171,7 @@
             background: white;
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -188,7 +189,7 @@
 
         .overview-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
         .card-icon {
@@ -224,17 +225,17 @@
         }
 
         .tech-card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             padding: 2rem;
             border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             text-align: center;
             transition: all 0.3s ease;
         }
 
         .tech-card:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             transform: scale(1.05);
         }
 
@@ -329,7 +330,7 @@
             background: white;
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: all 0.3s ease;
         }
@@ -377,13 +378,13 @@
             background: #f8f9fa;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
         .media-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
         .media-placeholder {
@@ -426,22 +427,22 @@
             .hero h1 {
                 font-size: 2rem;
             }
-            
+
             .nav-links {
                 display: none;
             }
-            
+
             .flow-container {
                 flex-direction: column;
             }
-            
+
             .flow-step:not(:last-child)::after {
                 content: '↓';
                 right: 50%;
                 top: 100%;
                 transform: translateX(50%);
             }
-            
+
             .overview-grid,
             .tech-grid,
             .achievement-grid {
@@ -455,6 +456,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -466,6 +468,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav>
@@ -487,7 +490,8 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Simulation and Synthetic Data Generation</h1>
-            <p>Advanced simulation of UAV in 3D environment using MATLAB Roadrunner, Gazebo, and ROS integration for autonomous mission testing and ML model training</p>
+            <p>Advanced simulation of UAV in 3D environment using MATLAB Roadrunner, Gazebo, and ROS integration for
+                autonomous mission testing and ML model training</p>
         </div>
     </section>
 
@@ -499,19 +503,24 @@
                 <div class="overview-card">
                     <span class="card-icon">🏗️</span>
                     <h3 class="card-title">Virtual Environment Creation</h3>
-                    <p class="card-description">Realistic 3D environments built using MATLAB Roadrunner, featuring accurate terrain modeling, weather conditions, and obstacle placement for comprehensive testing scenarios.</p>
+                    <p class="card-description">Realistic 3D environments built using MATLAB Roadrunner, featuring
+                        accurate terrain modeling, weather conditions, and obstacle placement for comprehensive testing
+                        scenarios.</p>
                 </div>
-                
+
                 <div class="overview-card">
                     <span class="card-icon">🤖</span>
                     <h3 class="card-title">Autonomous Mission Testing</h3>
-                    <p class="card-description">Complete autonomous flight missions simulated in Gazebo with ROS integration, testing navigation algorithms, obstacle avoidance, and mission execution protocols.</p>
+                    <p class="card-description">Complete autonomous flight missions simulated in Gazebo with ROS
+                        integration, testing navigation algorithms, obstacle avoidance, and mission execution protocols.
+                    </p>
                 </div>
-                
+
                 <div class="overview-card">
                     <span class="card-icon">📊</span>
                     <h3 class="card-title">Synthetic Data Generation</h3>
-                    <p class="card-description">Large-scale synthetic dataset creation for machine learning model training, including varied lighting conditions, weather scenarios, and terrain types.</p>
+                    <p class="card-description">Large-scale synthetic dataset creation for machine learning model
+                        training, including varied lighting conditions, weather scenarios, and terrain types.</p>
                 </div>
             </div>
         </div>
@@ -522,32 +531,36 @@
         <div class="container">
             <h2 class="section-title" style="color: white;">Technology Stack</h2>
             <p style="text-align: center; font-size: 1.1rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">
-                Our simulation environment leverages industry-leading tools and frameworks for maximum fidelity and integration capabilities.
+                Our simulation environment leverages industry-leading tools and frameworks for maximum fidelity and
+                integration capabilities.
             </p>
-            
+
             <div class="tech-grid">
                 <div class="tech-card">
                     <span class="tech-logo">🛣️</span>
                     <h3 class="tech-name">MATLAB Roadrunner</h3>
-                    <p class="tech-description">3D scene creation and road network modeling for realistic environment simulation</p>
+                    <p class="tech-description">3D scene creation and road network modeling for realistic environment
+                        simulation</p>
                 </div>
-                
+
                 <div class="tech-card">
                     <span class="tech-logo">🏭</span>
                     <h3 class="tech-name">Gazebo</h3>
-                    <p class="tech-description">Physics-based robot simulation with accurate sensor modeling and dynamics</p>
+                    <p class="tech-description">Physics-based robot simulation with accurate sensor modeling and
+                        dynamics</p>
                 </div>
-                
+
                 <div class="tech-card">
                     <span class="tech-logo">🤖</span>
                     <h3 class="tech-name">ROS (Robot Operating System)</h3>
                     <p class="tech-description">Middleware framework for robot communication and system integration</p>
                 </div>
-                
+
                 <div class="tech-card">
                     <span class="tech-logo">🧠</span>
                     <h3 class="tech-name">Machine Learning Pipeline</h3>
-                    <p class="tech-description">Integrated ML training pipeline for computer vision and autonomous navigation</p>
+                    <p class="tech-description">Integrated ML training pipeline for computer vision and autonomous
+                        navigation</p>
                 </div>
             </div>
         </div>
@@ -560,36 +573,41 @@
             <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto;">
                 Our comprehensive simulation pipeline from environment creation to model validation
             </p>
-            
+
             <div class="flow-container">
                 <div class="flow-step">
                     <div class="flow-icon">🏗️</div>
                     <h3 class="flow-title">Environment Design</h3>
-                    <p class="flow-description">Create realistic 3D environments using MATLAB Roadrunner with terrain, obstacles, and weather conditions</p>
+                    <p class="flow-description">Create realistic 3D environments using MATLAB Roadrunner with terrain,
+                        obstacles, and weather conditions</p>
                 </div>
-                
+
                 <div class="flow-step">
                     <div class="flow-icon">⚙️</div>
                     <h3 class="flow-title">Gazebo Integration</h3>
-                    <p class="flow-description">Import environments into Gazebo with physics simulation and sensor modeling for drone testing</p>
+                    <p class="flow-description">Import environments into Gazebo with physics simulation and sensor
+                        modeling for drone testing</p>
                 </div>
-                
+
                 <div class="flow-step">
                     <div class="flow-icon">🔄</div>
                     <h3 class="flow-title">ROS Communication</h3>
-                    <p class="flow-description">Establish ROS nodes for data exchange between simulation components and control systems</p>
+                    <p class="flow-description">Establish ROS nodes for data exchange between simulation components and
+                        control systems</p>
                 </div>
-                
+
                 <div class="flow-step">
                     <div class="flow-icon">📊</div>
                     <h3 class="flow-title">Data Collection</h3>
-                    <p class="flow-description">Generate synthetic datasets and collect performance metrics from autonomous mission runs</p>
+                    <p class="flow-description">Generate synthetic datasets and collect performance metrics from
+                        autonomous mission runs</p>
                 </div>
-                
+
                 <div class="flow-step">
                     <div class="flow-icon">🎯</div>
                     <h3 class="flow-title">Model Training</h3>
-                    <p class="flow-description">Train ML models using synthetic data and validate performance in simulated scenarios</p>
+                    <p class="flow-description">Train ML models using synthetic data and validate performance in
+                        simulated scenarios</p>
                 </div>
             </div>
         </div>
@@ -605,15 +623,20 @@
             <div class="achievement-grid">
                 <div class="achievement-card">
                     <h3 class="achievement-label">ADDC AIR 2 (2024)</h3>
-                    <p class="achievement-description">The Team Successfully Secured All India Rank of #2 out of 60 teams in Overall Performance and #2 for the best payload dropping mechanism for 2nd time in a row, which was their 2nd participation. Thus bagging a cash prize of 40,000 rupees.</p>
+                    <p class="achievement-description">The Team Successfully Secured All India Rank of #2 out of 60
+                        teams in Overall Performance and #2 for the best payload dropping mechanism for 2nd time in a
+                        row, which was their 2nd participation. Thus bagging a cash prize of 40,000 rupees.</p>
                 </div>
                 <div class="achievement-card">
                     <h3 class="achievement-label">Aerothon 2024</h3>
-                    <p class="achievement-description">The Team Successfully Secured All India Rank of #3 out of 98 teams in Overall Performance thus bagging a cash prize of 75,000 rupees.</p>
+                    <p class="achievement-description">The Team Successfully Secured All India Rank of #3 out of 98
+                        teams in Overall Performance thus bagging a cash prize of 75,000 rupees.</p>
                 </div>
                 <div class="achievement-card">
                     <h3 class="achievement-label">Team Aerokle</h3>
-                    <p class="achievement-description">Proud member of <a href="https://aerokle.in/team" target="_blank">Aerokle</a>. See our achievements at <a href="https://aerokle.in/achievements" target="_blank">Aerokle Achievements</a>.</p>
+                    <p class="achievement-description">Proud member of <a href="https://aerokle.in/team"
+                            target="_blank">Aerokle</a>. See our achievements at <a
+                            href="https://aerokle.in/achievements" target="_blank">Aerokle Achievements</a>.</p>
                 </div>
             </div>
         </div>
@@ -626,17 +649,18 @@
             <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto;">
                 Visual documentation of our simulation environments, testing scenarios, and results
             </p>
-            
+
             <div class="gallery-grid">
                 <div class="media-item">
                     <div class="media-placeholder">
                         <video class="media-video" autoplay muted loop playsinline>
-                            <source src="videos/sim.mp4" type="video/mp4">
+                            <source src="drone_simulation.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="media-content">
                         <h3 class="media-title">ROS2 Gazebo Object Detection Simulation</h3>
-                        <p class="media-description">Advanced simulation of object detection for Aerothon 2024 using ROS2 and Gazebo, demonstrating robust autonomous capabilities.</p>
+                        <p class="media-description">Advanced simulation of object detection for Aerothon 2024 using
+                            ROS2 and Gazebo, demonstrating robust autonomous capabilities.</p>
                     </div>
                 </div>
             </div>
@@ -666,7 +690,7 @@
         });
 
         // Add scroll effect to navigation
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const nav = document.querySelector('nav');
             if (window.scrollY > 100) {
                 nav.style.background = 'rgba(255, 255, 255, 0.98)';
@@ -681,7 +705,7 @@
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver(function(entries) {
+        const observer = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('fade-in-up');
@@ -704,7 +728,7 @@
                     current = target;
                     clearInterval(timer);
                 }
-                
+
                 if (target >= 1000) {
                     element.textContent = Math.floor(current / 1000) + 'K+';
                 } else if (target >= 100) {
@@ -716,16 +740,16 @@
         }
 
         // Animate counters when achievement section comes into view
-        const achievementObserver = new IntersectionObserver(function(entries) {
+        const achievementObserver = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const numbers = entry.target.querySelectorAll('.achievement-number');
                     const targets = [50000, 25, 12, 95, 100, 8];
-                    
+
                     numbers.forEach((number, index) => {
                         animateCounter(number, targets[index]);
                     });
-                    
+
                     achievementObserver.unobserve(entry.target);
                 }
             });
@@ -737,4 +761,5 @@
         }
     </script>
 </body>
+
 </html>
