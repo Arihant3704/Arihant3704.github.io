@@ -339,7 +339,8 @@ header {
   padding-bottom: 1.5rem;
 }
 
-.header-title h1 {
+.header-title h1,
+.header-title h2 {
   font-size: 1.75rem;
   font-weight: 700;
   letter-spacing: -0.5px;
@@ -1770,4 +1771,331 @@ header {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.15);
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN & MOBILE OPTIMIZATIONS
+   ========================================== */
+
+.nav-toggle {
+  display: none;
+}
+
+/* Tablet Layout overrides (screens <= 1024px) */
+@media (max-width: 1024px) {
+  .app-container {
+    grid-template-columns: 240px 1fr;
+  }
+
+  .stats-counter-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .repository-split-view {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile Layout overrides (screens <= 768px) */
+@media (max-width: 768px) {
+  body {
+    height: auto;
+    overflow-y: auto;
+  }
+
+  /* Global Navbar Mobile Styling */
+  nav {
+    position: fixed;
+    top: 0;
+    height: 70px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-container {
+    width: 100%;
+    padding: 0 1.5rem;
+    position: relative;
+  }
+
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding: 8px;
+  }
+
+  .nav-toggle:hover {
+    color: var(--primary);
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 10, 14, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    text-align: center;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 10px;
+    font-size: 1.05rem;
+  }
+
+  .nav-links a::after {
+    display: none; /* remove hover line effect on mobile for cleaner look */
+  }
+
+  /* Main Workspace Mobile Layout */
+  .app-container {
+    grid-template-columns: 100%;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-top: 70px;
+    overflow: visible;
+  }
+
+  /* Sidebar styling stacked on mobile */
+  aside {
+    border-right: none;
+    border-bottom: 1px solid var(--border-glow);
+    height: auto;
+    padding: 1.25rem;
+    gap: 1.5rem;
+    overflow-y: visible;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  /* Make categories scrollable horizontally on mobile */
+  .nav-section {
+    display: flex;
+    flex-direction: row !important;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 8px;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .nav-section::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .nav-section::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+
+  .nav-title {
+    display: none; /* Hide section titles to save space on mobile horizontal lists */
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+  }
+
+  /* Main workspace padding */
+  main {
+    padding: 1.25rem;
+    gap: 1.5rem;
+    overflow-y: visible;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  /* Stats strip to 2 columns on small screens */
+  .stats-counter-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .stat-item {
+    padding: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+  }
+
+  /* Videos Grid */
+  .videos-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Compare page styles stacked */
+  .compare-selectors {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .sync-toggle-btn {
+    align-self: stretch;
+    justify-content: center;
+    margin-top: 5px;
+  }
+
+  .compare-viewports {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .compare-specs-diff {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Logs view page font size adjustment */
+  .terminal-body {
+    padding: 1rem;
+    font-size: 0.78rem;
+  }
+
+  .log-line {
+    flex-direction: column;
+    gap: 2px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  .log-time, .log-level, .log-node {
+    display: inline-block;
+    min-width: 0;
+    margin-right: 8px;
+  }
+
+  .log-msg {
+    display: block;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    margin-top: 2px;
+  }
+
+  /* About Developer page styling */
+  .about-workspace {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Modals Stacked on mobile */
+  .modal-window {
+    grid-template-columns: 1fr;
+    height: auto;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
+
+  .modal-sidebar-panel {
+    border-left: none;
+    border-top: 1px solid var(--border-glow);
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .sidebar-tab-content {
+    max-height: none;
+    overflow: visible;
+  }
+
+  /* HUD Overlay adaptations */
+  .hud-overlay {
+    grid-template-columns: 1fr;
+    padding: 0.5rem;
+    font-size: 0.7rem;
+    gap: 8px;
+  }
+
+  .hud-left, .hud-right {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .hud-widget {
+    min-width: 0;
+    flex: 1;
+    padding: 6px 8px;
+  }
+
+  .hud-center {
+    display: none; /* Hide center crosshair on tiny viewports to keep visibility clean */
+  }
+
+  .hud-status-bar {
+    bottom: 50px;
+    padding: 4px 12px;
+    font-size: 0.7rem;
+  }
+}
+
+/* Small mobile viewports */
+@media (max-width: 480px) {
+  .stats-counter-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .hud-left, .hud-right {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hud-widget {
+    width: 100%;
+  }
+
+  .modal-header-bar h2 {
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+  }
 }
