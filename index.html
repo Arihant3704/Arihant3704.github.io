@@ -55,6 +55,13 @@
         "Computer Vision",
         "YOLOv8",
         "YOLOv11",
+        "YOLO-World",
+        "SmolVLM",
+        "Gemma LLM",
+        "Vision-Language Models (VLM)",
+        "Retrieval-Augmented Generation (RAG)",
+        "Model Quantization",
+        "Open-Vocabulary Object Detection",
         "ROS2",
         "Gazebo",
         "Machine Learning",
@@ -245,113 +252,180 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
+                <!-- Project 1: YOLOE Real-Time Seeing Anything -->
                 <div
                     class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 fade-in delay-1">
                     <div class="relative group h-48 overflow-hidden bg-gray-100">
-                        <img src="images/Object Detection on Laptop.png"
-                            alt="Screenshot of object detection running on a laptop showing bounding boxes around cats and dogs"
+                        <img src="images/yoloe_seeing_anything.png"
+                            alt="Visual performance and edge metrics of YOLO-E model"
                             loading="lazy"
                             class="w-full h-full object-contain transition duration-300 group-hover:scale-110">
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Object Detection on Laptop</h3>
-                        <p class="text-gray-600 mb-4">Real-time object detection using YOLOv8. Trained on a custom
-                            dataset to detect <strong>cat, dog, and person</strong> with high accuracy, running
-                            efficiently on a laptop CPU.</p>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">YOLOE Real-Time Seeing Anything</h3>
+                        <p class="text-gray-600 mb-4">Highly optimized edge object detection pipeline using PP-YOLOE, achieving ultra-low inference latency and high-speed execution for embedded deployment.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span
-                                class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">Python</span>
+                                class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">PP-YOLOE</span>
                             <span
-                                class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">YOLOv8</span>
+                                class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Edge AI</span>
                             <span
-                                class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold">Computer
-                                Vision</span>
+                                class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold">Inference</span>
                         </div>
                         <div class="flex space-x-3">
-                            <a href="videos/dectionlaptopfps13.webm" target="_blank"
+                            <a href="https://huggingface.co/spaces/arihant3704/YOLOE_Real-Time_Seeing_Anything" target="_blank"
                                 class="text-blue-600 hover:text-blue-800 flex items-center">
-                                <i class="fas fa-external-link-alt mr-1"></i> View Demo
+                                <i class="fas fa-external-link-alt mr-1"></i> Try Live Space
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 2 -->
+                <!-- Project 2: YOLO-World Open-Vocabulary Detector -->
                 <div
                     class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 fade-in delay-2">
                     <div class="relative group h-48 overflow-hidden bg-gray-100">
-                        <img src="images/nocodeml.png"
-                            alt="Screenshot of the No-Code ML Training App interface showing model training options"
+                        <img src="images/yolo_world_detector.png"
+                            alt="Visual zero-shot prediction bounding boxes on target items using YOLO-World"
                             loading="lazy"
                             class="w-full h-full object-contain transition duration-300 group-hover:scale-110">
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">No-Code ML Training App</h3>
-                        <p class="text-gray-600 mb-4">A user-friendly streamlined application for training machine
-                            learning models without writing code. Supports dataset upload, model selection, and training
-                            visualization.</p>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">YOLO-World Detector</h3>
+                        <p class="text-gray-600 mb-4">Real-time open-vocabulary object detector utilizing zero-shot learning and text prompt embeddings to locate any class without explicit retraining.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span
-                                class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">Python</span>
+                                class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">YOLO-World</span>
                             <span
-                                class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Streamlit</span>
+                                class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Zero-Shot</span>
                             <span
-                                class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-semibold">Scikit-learn</span>
+                                class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-semibold">Open-Vocabulary</span>
                         </div>
                         <div class="flex space-x-3">
-                            <a href="https://github.com/Arihant3704/GSTN_940" target="_blank"
+                            <a href="https://huggingface.co/spaces/arihant3704/yolo-world-detector" target="_blank"
+                                class="text-blue-600 hover:text-blue-800 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> Try Live Space
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: OCR Battle Arena -->
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 fade-in delay-3">
+                    <div class="relative group h-48 overflow-hidden bg-gradient-to-br from-indigo-900 to-purple-800 flex items-center justify-center">
+                        <div class="text-center text-white px-4">
+                            <i class="fas fa-font text-5xl mb-2 opacity-80"></i>
+                            <div class="font-bold text-sm tracking-wider uppercase">OCR Battle Arena</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">OCR Battle Arena</h3>
+                        <p class="text-gray-600 mb-4">A benchmarking suite comparing performance, character error rates, and recognition latencies of multiple OCR engines in real-time streams.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs font-semibold">OCR</span>
+                            <span
+                                class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Tesseract</span>
+                            <span
+                                class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs font-semibold">EasyOCR</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://huggingface.co/spaces/arihant3704/ocr-battle-arena" target="_blank"
+                                class="text-blue-600 hover:text-blue-800 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> Try Live Space
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: VLM Event Logger RAG -->
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 fade-in delay-1">
+                    <div class="relative group h-48 overflow-hidden bg-gradient-to-br from-gray-950 to-blue-950 flex items-center justify-center">
+                        <div class="text-center text-white px-4">
+                            <i class="fas fa-video text-5xl mb-2 opacity-80"></i>
+                            <div class="font-bold text-sm tracking-wider uppercase">Surveillance RAG Pipeline</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">VLM Event Logger RAG</h3>
+                        <p class="text-gray-600 mb-4">Multi-modal Retrieval-Augmented Generation (RAG) surveillance dashboard that logs video events using Vision LLMs and indexes them for natural language search queries.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">Multimodal RAG</span>
+                            <span
+                                class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold">VectorDB</span>
+                            <span
+                                class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Ollama</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://github.com/Arihant3704/vlm-event-logger-rag" target="_blank"
                                 class="text-blue-600 hover:text-blue-800 flex items-center">
                                 <i class="fab fa-github mr-1"></i> View Code
                             </a>
-                            <a href="videos/No-code-ml-mpodel-training-app.mp4" target="_blank"
-                                class="text-blue-600 hover:text-blue-800 flex items-center ml-4">
-                                <i class="fas fa-play-circle mr-1"></i> View Demo
-                            </a>
                         </div>
                     </div>
                 </div>
 
-
-
-                <!-- Project 4 -->
+                <!-- Project 5: Real-Time Smol Vision -->
                 <div
-                    class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 fade-in delay-1">
-                    <div class="relative group h-48 overflow-hidden">
-                        <img src="images/ml.png" alt="Machine learning conceptual diagram for Predicting Car Prices"
+                    class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 fade-in delay-2">
+                    <div class="relative group h-48 overflow-hidden bg-gray-100">
+                        <img src="images/smol_vision_phone.png"
+                            alt="VLM reasoning visual overlay output of cell phone detection"
                             loading="lazy"
-                            class="w-full h-full object-cover transition duration-300 group-hover:scale-110">
+                            class="w-full h-full object-contain transition duration-300 group-hover:scale-110">
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Predicting Car Prices</h3>
-                        <p class="text-gray-600 mb-4">A machine learning model to predict car prices based on various
-                            features.</p>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Real-Time Smol Vision</h3>
+                        <p class="text-gray-600 mb-4">Lightweight VLM applications utilizing SmolVLM for real-time mobile cell phone detection, rod color sorting, and visual reasoning tasks on edge platforms.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span
-                                class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">Python</span>
+                                class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">SmolVLM</span>
                             <span
-                                class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Machine
-                                Learning</span>
+                                class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Edge VLM</span>
                             <span
-                                class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold">Pandas</span>
+                                class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-semibold">Real-Time</span>
                         </div>
-                        <div class="flex space-x-3 flex-wrap">
-                            <a href="https://github.com/Arihant3704/Predicting-car-prices-based-on-age-and-mileage"
-                                target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center mb-2">
+                        <div class="flex space-x-3">
+                            <a href="https://github.com/Arihant3704/realtime-smol-vision" target="_blank"
+                                class="text-blue-600 hover:text-blue-800 flex items-center">
                                 <i class="fab fa-github mr-1"></i> View Code
-                            </a>
-                            <a href="https://arihant3704.github.io/Predicting-car-prices-based-on-age-and-mileage/"
-                                target="_blank"
-                                class="text-blue-600 hover:text-blue-800 flex items-center ml-4 mb-2 border border-blue-600 rounded-full px-3 py-1 text-sm">
-                                <i class="fas fa-external-link-alt mr-1"></i> View Live
-                            </a>
-                            <a href="videos/Predicting _car_prices ML.mp4" target="_blank"
-                                class="text-blue-600 hover:text-blue-800 flex items-center ml-4 mb-2">
-                                <i class="fas fa-play-circle mr-1"></i> View Demo
                             </a>
                         </div>
                     </div>
                 </div>
+
+                <!-- Project 6: Gemma Elite Surveillance -->
+                <div
+                    class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 fade-in delay-3">
+                    <div class="relative group h-48 overflow-hidden bg-gradient-to-br from-teal-950 to-cyan-950 flex items-center justify-center">
+                        <div class="text-center text-white px-4">
+                            <i class="fas fa-network-wired text-5xl mb-2 opacity-80"></i>
+                            <div class="font-bold text-sm tracking-wider uppercase">Gemma Security Nodes</div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Gemma Elite Surveillance</h3>
+                        <p class="text-gray-600 mb-4">Local autonomous security agent framework with quantized Gemma models (INT8/FP16) integrated into hierarchical Sentry and Scout nodes for edge intelligence.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-xs font-semibold">Gemma</span>
+                            <span
+                                class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-xs font-semibold">Quantization</span>
+                            <span
+                                class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-semibold">Agent Nodes</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://github.com/Arihant3704/gemma-elite-surveillance" target="_blank"
+                                class="text-blue-600 hover:text-blue-800 flex items-center">
+                                <i class="fab fa-github mr-1"></i> View Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- Project 5 -->
                 <!-- Project 5: Edge AI Object Detection -->
