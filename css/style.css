@@ -1,18 +1,25 @@
-/* Custom CSS for animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
+/* By default, elements are visible (for SEO and headless browser crawlers) */
 .fade-in {
-    animation: fadeIn 1s ease-out forwards;
-    opacity: 0; /* Start hidden */
+    opacity: 1;
 }
 
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-.delay-3 { animation-delay: 0.6s; }
-.delay-4 { animation-delay: 0.8s; }
+/* Progressive enhancement: Only hide elements if JS is enabled */
+.js-enabled .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1), transform 1.0s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Revealed state triggered by Scroll Observer */
+.js-enabled .fade-in.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
 
 .card-hover:hover {
     transform: translateY(-5px);
