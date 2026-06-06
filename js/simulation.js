@@ -164,6 +164,27 @@ document.addEventListener("DOMContentLoaded", () => {
   initCompare();
   initTerminal();
   updateStats();
+
+  // Handle URL query parameters for deep linking
+  const urlParams = new URLSearchParams(window.location.search);
+  const runParam = urlParams.get('run');
+  const tabParam = urlParams.get('tab');
+  
+  if (tabParam) {
+    const tabBtn = document.querySelector(`.nav-btn[data-tab="${tabParam}"]`);
+    if (tabBtn) {
+      tabBtn.click();
+    }
+  }
+  
+  if (runParam) {
+    const video = videosData.find(v => v.id === runParam);
+    if (video) {
+      setTimeout(() => {
+        openVideoModal(video);
+      }, 300);
+    }
+  }
 });
 
 // Navigation / Tabs
