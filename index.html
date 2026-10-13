@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -81,10 +81,18 @@
     <script>
         // Progressive enhancement: add js-enabled class before rendering to prevent animation block for non-JS scrapers
         document.documentElement.classList.add('js-enabled');
+        const initialTheme = localStorage.getItem('portfolio-theme');
+        if (initialTheme === 'light' || initialTheme === 'dark') {
+            document.documentElement.dataset.theme = initialTheme;
+        }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/site-effects.css">
     <style>
         @keyframes fade1 {
 
@@ -159,13 +167,18 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <a href="#" class="text-xl font-bold gradient-text">Arihant's Portfolio</a>
+                    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light theme"
+                        aria-pressed="false">
+                        <i class="fas fa-sun" aria-hidden="true"></i>
+                        <span data-theme-label>Light mode</span>
+                    </button>
                 </div>
                 <div class="hidden xl:flex items-center space-x-5 text-sm font-medium">
                     <a href="#home" class="text-gray-700 hover:text-blue-600 transition">Home</a>
                     <a href="#projects" class="text-gray-700 hover:text-blue-600 transition">Projects</a>
-                    <a href="simulation.html" target="_blank"
+                    <a href="#simulation-lab"
                         class="text-blue-600 hover:text-blue-800 font-semibold flex items-center transition"><i
-                            class="fas fa-desktop mr-1.5 text-sm"></i>Simulation HUD</a>
+                            class="fas fa-desktop mr-1.5 text-sm"></i>Simulations</a>
                     <a href="#certificates" class="text-gray-700 hover:text-blue-600 transition">Certificates</a>
                     <a href="#competitions" class="text-gray-700 hover:text-blue-600 transition">Competitions</a>
                     <a href="#research-papers" class="text-gray-700 hover:text-blue-600 transition">Research Papers</a>
@@ -177,7 +190,8 @@
                             class="fas fa-file-pdf mr-1 text-sm text-red-500"></i>Resume</a>
                 </div>
                 <div class="xl:hidden flex items-center">
-                    <button id="menu-btn" class="text-gray-700">
+                    <button id="menu-btn" class="text-gray-700" type="button" aria-label="Toggle navigation"
+                        aria-controls="mobile-menu" aria-expanded="false">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
@@ -188,9 +202,9 @@
         <div id="mobile-menu" class="hidden xl:hidden bg-white pb-4 px-4">
             <a href="#home" class="block py-2 text-gray-700 hover:text-blue-600 transition">Home</a>
             <a href="#projects" class="block py-2 text-gray-700 hover:text-blue-600 transition">Projects</a>
-            <a href="simulation.html" target="_blank"
+            <a href="#simulation-lab"
                 class="block py-2 text-blue-600 font-semibold hover:text-blue-800 transition"><i
-                    class="fas fa-desktop mr-1.5 text-sm"></i>Simulation HUD</a>
+                    class="fas fa-desktop mr-1.5 text-sm"></i>Simulations</a>
             <a href="#certificates" class="block py-2 text-gray-700 hover:text-blue-600 transition">Certificates</a>
             <a href="#competitions" class="block py-2 text-gray-700 hover:text-blue-600 transition">Competitions</a>
             <a href="#research-papers" class="block py-2 text-gray-700 hover:text-blue-600 transition">Research
@@ -225,6 +239,10 @@
                             <a href="#projects"
                                 class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition font-medium">
                                 View Work
+                            </a>
+                            <a href="#simulation-lab"
+                                class="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-md hover:from-purple-700 hover:to-pink-700 transition font-medium flex items-center">
+                                <i class="fas fa-play mr-2" aria-hidden="true"></i>Watch Simulations
                             </a>
                             <a href="Arihant_Resume.pdf" target="_blank"
                                 class="px-6 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-md hover:from-red-700 hover:to-orange-700 transition font-medium flex items-center shadow-md">
@@ -262,13 +280,14 @@
                 </div>
 
                 <!-- Project Filter Tabs -->
-                <div class="flex flex-wrap justify-center gap-3 mb-12 fade-in">
-                    <button class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition bg-blue-600 text-white shadow-md" data-filter="all">All Projects</button>
-                    <button class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="featured">★ Featured</button>
-                    <button class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="ai-cv">AI & Computer Vision</button>
-                    <button class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="robotics">Robotics & Simulation</button>
-                    <button class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="embedded">Embedded & Electronics</button>
+                <div class="flex flex-wrap justify-center gap-3 mb-12 fade-in" role="group" aria-label="Filter projects">
+                    <button type="button" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition bg-blue-600 text-white shadow-md" data-filter="all" aria-pressed="true">All Projects</button>
+                    <button type="button" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="featured" aria-pressed="false">★ Featured</button>
+                    <button type="button" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="ai-cv" aria-pressed="false">AI & Computer Vision</button>
+                    <button type="button" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="robotics" aria-pressed="false">Robotics & Simulation</button>
+                    <button type="button" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition bg-gray-100 text-gray-700 hover:bg-gray-200" data-filter="embedded" aria-pressed="false">Embedded & Electronics</button>
                 </div>
+                <p id="projects-filter-status" class="sr-only" aria-live="polite"></p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
                     <!-- Project 1: YOLOE Real-Time Seeing Anything -->
@@ -548,7 +567,7 @@
                                     target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center">
                                     <i class="fab fa-github mr-1"></i> View Wiki
                                 </a>
-                                <a href="videos/wire cutting machine.mp4" target="_blank"
+                                <a href="videos/wire_cutting_machine_small.mp4" target="_blank"
                                     class="text-blue-600 hover:text-blue-800 flex items-center ml-4">
                                     <i class="fas fa-play-circle mr-1"></i> View Demo
                                 </a>
@@ -749,109 +768,69 @@
                         </div>
                     </div>
 
-                    <!-- Project 14: ADDC Precision Landing Run -->
-                    <div class="project-card bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 fade-in delay-2" data-category="robotics ai-cv" data-featured="false">
-                        <div class="relative group h-48 overflow-hidden bg-gray-100">
-                            <img src="images/ADDC2025DRONE.jpg" alt="Drone centering target circle on downward camera feed in Gazebo"
-                                loading="lazy"
-                                class="w-full h-full object-contain transition duration-300 group-hover:scale-110">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex flex-wrap items-center gap-2 mb-3">
-                                <span class="px-2.5 py-0.5 text-xs font-semibold rounded bg-purple-100 text-purple-800">Robotics</span>
-                                <span class="px-2.5 py-0.5 text-xs font-semibold rounded bg-blue-100 text-blue-800">AI & CV</span>
-                                <span class="px-2.5 py-0.5 text-xs font-semibold rounded bg-amber-100 text-amber-800">AIR 2 - ADDC</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">ADDC Precision Landing (AIR 2)</h3>
-                            <p class="text-gray-600 mb-4 text-sm">Autonomous precision target landing simulation run.
-                            <ul class="list-disc list-inside text-sm text-gray-600 mb-4">
-                                <li>Secured <strong>AIR 2</strong> (All India Rank 2) at ADDC 2024.</li>
-                                <li>Isolates landing rings via Hough Circle Transform on downward feed.</li>
-                                <li>Employs adaptive PID loops for centroid alignment and descent.</li>
-                            </ul>
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">ROS 2</span>
-                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Gazebo</span>
-                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">OpenCV</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <a href="simulation.html?run=addc_2025_drone" target="_blank"
-                                    class="text-blue-600 hover:text-blue-800 flex items-center text-sm font-semibold">
-                                    <i class="fas fa-play mr-1"></i> Launch Simulation Run
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 15: Aerothon 2024 Mission 4 (Serpent M4) -->
-                    <div class="project-card bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 fade-in delay-3" data-category="robotics" data-featured="false">
-                        <div class="relative group h-48 overflow-hidden bg-gray-100">
-                            <img src="images/Aerthon2024surpentm4.jpg" alt="Drone executing slalom curve maneuvers in simulated airspace"
-                                loading="lazy"
-                                class="w-full h-full object-contain transition duration-300 group-hover:scale-110">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex flex-wrap items-center gap-2 mb-3">
-                                <span class="px-2.5 py-0.5 text-xs font-semibold rounded bg-purple-100 text-purple-800">Robotics</span>
-                                <span class="px-2.5 py-0.5 text-xs font-semibold rounded bg-amber-100 text-amber-800">AIR 3 - Aerothon</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Aerothon 2024 Mission 4 (Serpent M4)</h3>
-                            <p class="text-gray-600 mb-4 text-sm">Autonomous slalom trajectory tracking and validation run.
-                            <ul class="list-disc list-inside text-sm text-gray-600 mb-4">
-                                <li>Secured <strong>AIR 3</strong> (All India Rank 3) at SAE Aerothon 2024.</li>
-                                <li>Integrates cubic Hermite splines to generate smooth slalom curves.</li>
-                                <li>Maps attitude control rates dynamically to PX4 rates via MAVROS.</li>
-                            </ul>
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">C++</span>
-                                <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-semibold">MAVROS</span>
-                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">PX4 Autopilot</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <a href="simulation.html?run=aerothon_serpent" target="_blank"
-                                    class="text-blue-600 hover:text-blue-800 flex items-center text-sm font-semibold">
-                                    <i class="fas fa-play mr-1"></i> Launch Simulation Run
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 16: Agribot Crop Row Navigation -->
-                    <div class="project-card bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300 fade-in delay-1" data-category="robotics ai-cv" data-featured="false">
-                        <div class="relative group h-48 overflow-hidden bg-gray-100">
-                            <img src="images/agribotnagavation.jpg" alt="Agricultural ground robot navigating autonomously between crop rows"
-                                loading="lazy"
-                                class="w-full h-full object-contain transition duration-300 group-hover:scale-110">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex flex-wrap items-center gap-2 mb-3">
-                                <span class="px-2.5 py-0.5 text-xs font-semibold rounded bg-purple-100 text-purple-800">Robotics</span>
-                                <span class="px-2.5 py-0.5 text-xs font-semibold rounded bg-blue-100 text-blue-800">AI & CV</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Agribot Crop Row Navigation</h3>
-                            <p class="text-gray-600 mb-4 text-sm">Crop row centering demonstration for an agricultural ground robot.
-                            <ul class="list-disc list-inside text-sm text-gray-600 mb-4">
-                                <li>Isolates green vegetation lanes using a custom chromaticity mask.</li>
-                                <li>Applies Hough Line transform to estimate target road centerlines.</li>
-                                <li>Outputs steering control parameters directly to chassis motors.</li>
-                            </ul>
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">ROS</span>
-                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Chromat Mask</span>
-                                <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-semibold">Differential Drive</span>
-                            </div>
-                            <div class="flex space-x-3">
-                                <a href="simulation.html?run=agribot_nav" target="_blank"
-                                    class="text-blue-600 hover:text-blue-800 flex items-center text-sm font-semibold">
-                                    <i class="fas fa-play mr-1"></i> Launch Simulation Run
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div> </div>
+            </div>
+        </section>
+
+        <!-- Simulation Lab: playable previews on the portfolio page -->
+        <section id="simulation-lab" class="py-20 bg-white" aria-labelledby="simulation-lab-title">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="simulation-lab-heading fade-in">
+                    <p class="simulation-kicker"><i class="fas fa-satellite-dish" aria-hidden="true"></i> FLIGHT TESTS, NO EXTRA CLICK</p>
+                    <h2 id="simulation-lab-title" class="text-3xl font-bold text-gray-800 mb-4">Simulation <span class="gradient-text">Lab</span></h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Watch real autonomous flight and robotics runs right here. Press play for a preview, or open a run in the full telemetry dashboard.</p>
+                </div>
+
+                <div class="simulation-preview-grid">
+                    <article class="simulation-preview-card fade-in delay-1">
+                        <video controls preload="none" playsinline poster="images/ADDC2025DRONE.jpg"
+                            aria-label="Autonomous drone delivery simulation preview">
+                            <source src="videos/addc_2025_drone_360p.mp4" type="video/mp4">
+                            Your browser does not support embedded video.
+                        </video>
+                        <div class="simulation-preview-copy">
+                            <span class="simulation-run-tag">ADDC · AIR 2 · 04:02</span>
+                            <h3>ADDC Precision Landing</h3>
+                            <p>Waypoint flight, obstacle avoidance, and Hough-circle target detection with adaptive PID landing in Gazebo.</p>
+                            <a href="simulation.html?run=addc_2025_drone">Explore flight telemetry <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="simulation-preview-card fade-in delay-2">
+                        <video controls preload="none" playsinline poster="images/Aerthon2024surpentm4.jpg"
+                            aria-label="Aerothon Serpent M4 slalom simulation preview">
+                            <source src="videos/aerothon_serpent_360p.mp4" type="video/mp4">
+                            Your browser does not support embedded video.
+                        </video>
+                        <div class="simulation-preview-copy">
+                            <span class="simulation-run-tag">SAE AEROTHON 2024 · AIR 3 · 06:31</span>
+                            <h3>Aerothon Serpent M4</h3>
+                            <p>Watch cubic Hermite spline slalom tracking with attitude-rate control through PX4 and MAVROS.</p>
+                            <a href="simulation.html?run=aerothon_serpent">Explore the flight path <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="simulation-preview-card fade-in delay-3">
+                        <video controls preload="none" playsinline poster="images/agribotnagavation.jpg"
+                            aria-label="Agribot crop-row navigation simulation preview">
+                            <source src="videos/agribot_nav_360p.mp4" type="video/mp4">
+                            Your browser does not support embedded video.
+                        </video>
+                        <div class="simulation-preview-copy">
+                            <span class="simulation-run-tag">VISION-GUIDED GROUND ROBOT · 00:19</span>
+                            <h3>Agribot Row Navigation</h3>
+                            <p>Chromaticity masking and Hough line detection estimate crop-row centerlines for differential steering.</p>
+                            <a href="simulation.html?run=agribot_nav">Explore robot diagnostics <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="simulation-lab-action">
+                    <a href="simulation.html" class="simulation-dashboard-link">
+                        Open the full Simulation HUD <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <span>Compare runs, inspect telemetry, and browse diagnostics.</span>
+                </div>
             </div>
         </section>
 
@@ -1139,87 +1118,67 @@
                 <div class="text-center mb-16 fade-in">
                     <h2 class="text-3xl font-bold text-gray-800 mb-4">My <span class="gradient-text">Competitions</span>
                     </h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">Here are some of the competitions I've
-                        participated in and our team's achievements.</p>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Two autonomous drone teams, two demanding competitions, and the results we earned together.</p>
                 </div>
 
-                <div class="flex flex-col gap-12">
-                    <!-- ADDC 2024 Competition -->
-                    <div
-                        class="relative w-full h-[450px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl fade-in delay-1 group">
-                        <img src="images/2024_award_ceremony.jpg" alt="ADDC 2.0 team photo at the 2024 award ceremony"
-                            loading="lazy"
-                            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-100 group-hover:opacity-0 group-hover:scale-105">
-                        <img src="images/24-addc.jpg" alt="Close-up of the ADDC 2.0 autonomous drone" loading="lazy"
-                            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-transparent transition duration-500 group-hover:bg-black/60">
+                <div class="competition-grid">
+                    <article class="competition-card fade-in delay-1">
+                        <div class="competition-images">
+                            <button class="competition-image-button" type="button"
+                                aria-label="View larger image: ADDC 2.0 team at the 2024 award ceremony">
+                                <img src="images/2024_award_ceremony.jpg"
+                                    alt="ADDC 2.0 team celebrating at the 2024 award ceremony" loading="lazy">
+                            </button>
+                            <button class="competition-image-button" type="button"
+                                aria-label="View larger image: ADDC 2.0 autonomous drone">
+                                <img src="images/24-addc.jpg" alt="The ADDC 2.0 autonomous drone" loading="lazy">
+                            </button>
                         </div>
-                        <div
-                            class="absolute inset-y-0 right-0 w-full md:w-1/2 lg:w-[45%] p-6 md:p-10 flex items-center justify-end pointer-events-none group-hover:pointer-events-auto">
-                            <div
-                                class="bg-[#242618] bg-opacity-95 rounded-xl p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.8)] backdrop-blur-md border border-gray-600/50 transform transition-all duration-500 opacity-0 translate-x-12 group-hover:translate-x-0 group-hover:opacity-100">
-                                <h3 class="text-3xl md:text-4xl font-bold text-white mb-2 text-center tracking-wide">
-                                    ADDC 2.0
-                                </h3>
-                                <h4
-                                    class="text-xl md:text-2xl font-semibold text-gray-300 mb-6 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 tracking-wider">
-                                    <span>ADDC 2024</span>
-                                    <span
-                                        class="px-3 py-1 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white text-sm font-extrabold rounded-full shadow-lg border border-yellow-400/50">🏆
-                                        AIR 2</span>
-                                </h4>
-                                <p class="text-gray-300 text-sm md:text-base leading-relaxed text-center font-light">
-                                    The ADDC 2024 drone introduced groundbreaking advancements in maneuverability,
-                                    stability, and payload delivery systems, achieving seamless operation even in
-                                    complex
-                                    mission scenarios. The team's commitment to evolution and excellence was evident in
-                                    every aspect of this cutting-edge aerial vehicle.
-                                </p>
+                        <div class="competition-copy">
+                            <p class="competition-kicker">AUTONOMOUS DRONE DELIVERY</p>
+                            <h3>ADDC 2.0</h3>
+                            <div class="competition-meta">
+                                <span>ADDC 2024</span>
+                                <span class="competition-award">AIR 2 · All India Rank</span>
                             </div>
+                            <p class="competition-description">Our team earned AIR 2 at ADDC 2024. The challenge put our drone’s stability, maneuverability, and payload delivery to the test in complex mission scenarios.</p>
                         </div>
-                    </div>
+                    </article>
 
-                    <!-- Aerothon 2024 Competition -->
-                    <div
-                        class="relative w-full h-[450px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl fade-in delay-2 group">
-                        <img src="images/2024_aerothon_award_ceremony.jpg"
-                            alt="Trkshya team photo at the Aerothon 2024 award ceremony" loading="lazy"
-                            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-100 group-hover:opacity-0 group-hover:scale-105">
-                        <img src="images/24-aerothon.jpg" alt="Close-up of the Trkshya autonomous drone" loading="lazy"
-                            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-transparent transition duration-500 group-hover:bg-black/60">
+                    <article class="competition-card fade-in delay-2">
+                        <div class="competition-images">
+                            <button class="competition-image-button" type="button"
+                                aria-label="View larger image: Trkshya team at the Aerothon 2024 award ceremony">
+                                <img src="images/2024_aerothon_award_ceremony.jpg"
+                                    alt="Trkshya team at the Aerothon 2024 award ceremony" loading="lazy">
+                            </button>
+                            <button class="competition-image-button" type="button"
+                                aria-label="View larger image: Trkshya autonomous drone">
+                                <img src="images/24-aerothon.jpg" alt="The Trkshya autonomous drone" loading="lazy">
+                            </button>
                         </div>
-                        <div
-                            class="absolute inset-y-0 right-0 w-full md:w-1/2 lg:w-[45%] p-6 md:p-10 flex items-center justify-end pointer-events-none group-hover:pointer-events-auto">
-                            <div
-                                class="bg-[#242618] bg-opacity-95 rounded-xl p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.8)] backdrop-blur-md border border-gray-600/50 transform transition-all duration-500 opacity-0 translate-x-12 group-hover:translate-x-0 group-hover:opacity-100">
-                                <h3
-                                    class="text-3xl md:text-4xl font-bold text-white mb-2 text-center tracking-wide uppercase">
-                                    TRKSHYA
-                                </h3>
-                                <h4
-                                    class="text-xl md:text-2xl font-semibold text-gray-300 mb-6 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 tracking-wider">
-                                    <span>Aerothon 2024</span>
-                                    <span
-                                        class="px-3 py-1 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white text-sm font-extrabold rounded-full shadow-lg border border-yellow-400/50">🏆
-                                        AIR 3</span>
-                                </h4>
-                                <p class="text-gray-300 text-sm md:text-base leading-relaxed text-center font-light">
-                                    With a dynamic and innovative team, the drones were engineered to excel in various
-                                    autonomous missions, setting new benchmarks in performance and design. Trkshya was
-                                    tailored for a broad spectrum of operations, demonstrated unparalleled flight
-                                    stability,
-                                    structural robustness, and maneuverability, ensuring precise execution of complex
-                                    tasks.
-                                    Its aerodynamic profile minimized drag, while advanced thermal management systems
-                                    enhanced efficiency under demanding conditions.
-                                </p>
+                        <div class="competition-copy">
+                            <p class="competition-kicker">AUTONOMOUS FLIGHT</p>
+                            <h3>Trkshya</h3>
+                            <div class="competition-meta">
+                                <span>SAE Aerothon 2024</span>
+                                <span class="competition-award">AIR 3 · All India Rank</span>
                             </div>
+                            <p class="competition-description">Our team secured AIR 3 with Trkshya. Designed for autonomous missions, the drone paired stable, agile flight with an aerodynamic build and thermal management for demanding conditions.</p>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
+
+        <dialog id="competition-image-viewer" class="competition-image-viewer"
+            aria-label="Competition image viewer">
+            <button class="competition-viewer-close" type="button" aria-label="Close enlarged image">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+            <img class="competition-viewer-image" alt="">
+            <p class="competition-viewer-caption"></p>
+        </dialog>
 
 
 
@@ -1245,7 +1204,7 @@
                                 to visualize medication instructions.</p>
                             <div class="flex flex-col space-y-2">
 
-                                <a href="Research Paper/Certificate/AutoMedVis_ A Multimodal Framework for  Visualizing Medicine Information.pdf.png"
+                                <a href="assets/research/certificates/AutoMedVis_ A Multimodal Framework for  Visualizing Medicine Information.pdf.png"
                                     target="_blank"
                                     class="text-blue-600 hover:text-blue-800 text-sm font-semibold flex items-center">
                                     <i class="fas fa-certificate mr-2"></i> View Certificate
@@ -1268,7 +1227,7 @@
                                     class="text-blue-600 hover:text-blue-800 text-sm font-semibold flex items-center">
                                     <i class="fas fa-external-link-alt mr-2"></i> View on IEEE Xplore
                                 </a>
-                                <a href="Research Paper/Certificate/Automated Student Activity Recognition using yolov11n.png"
+                                <a href="assets/research/certificates/Automated Student Activity Recognition using yolov11n.png"
                                     target="_blank"
                                     class="text-blue-600 hover:text-blue-800 text-sm font-semibold flex items-center">
                                     <i class="fas fa-certificate mr-2"></i> View Certificate
@@ -1289,7 +1248,7 @@
                                 consumption.</p>
                             <div class="flex flex-col space-y-2">
 
-                                <a href="Research Paper/Certificate/Cross-Platform Deployment and Performance Benchmarking of YOLOv8 for Computer Vision Tasks.jpg"
+                                <a href="assets/research/certificates/Cross-Platform Deployment and Performance Benchmarking of YOLOv8 for Computer Vision Tasks.jpg"
                                     target="_blank"
                                     class="text-blue-600 hover:text-blue-800 text-sm font-semibold flex items-center">
                                     <i class="fas fa-certificate mr-2"></i> View Certificate
@@ -1312,7 +1271,7 @@
                                     class="text-blue-600 hover:text-blue-800 text-sm font-semibold flex items-center">
                                     <i class="fas fa-external-link-alt mr-2"></i> View on IEEE Xplore
                                 </a>
-                                <a href="Research Paper/Certificate/Hardware-Accelerated Object Detection with YOLOv5-Nano on an FPGA Platform.jpg"
+                                <a href="assets/research/certificates/Hardware-Accelerated Object Detection with YOLOv5-Nano on an FPGA Platform.jpg"
                                     target="_blank"
                                     class="text-blue-600 hover:text-blue-800 text-sm font-semibold flex items-center">
                                     <i class="fas fa-certificate mr-2"></i> View Certificate
@@ -1368,104 +1327,62 @@
                         industry and technical teams.</p>
                 </div>
 
-                <div class="relative border-l-4 border-blue-500 ml-3 md:ml-0 md:mx-auto max-w-4xl fade-in delay-1">
+                <div class="experience-grid fade-in delay-1">
 
                     <!-- Experience 1 -->
-                    <div class="mb-10 ml-6 md:ml-8 relative">
-                        <div
-                            class="absolute -left-[1.8rem] md:-left-[2.3rem] mt-1.5 w-6 h-6 rounded-full bg-blue-600 border-4 border-white shadow">
-                        </div>
-                        <div class="bg-gray-50 p-6 rounded-xl shadow-md card-hover transition duration-300">
-                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-800">Computer Vision & Machine Learning
-                                        Intern</h3>
-                                    <p class="text-blue-600 font-medium">DocketRun Technologies Pvt. Ltd.</p>
-                                </div>
-                                <div
-                                    class="mt-2 md:mt-0 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold inline-block">
-                                    Jan 2026 – Present
-                                </div>
+                    <article class="experience-card">
+                        <div class="experience-card-heading">
+                            <div class="experience-card-title">
+                                <span class="experience-index">01 / CURRENT ROLE</span>
+                                <h3 class="text-xl font-bold text-gray-800">Computer Vision & Machine Learning Intern</h3>
+                                <p class="text-blue-600 font-medium">DocketRun Technologies Pvt. Ltd.</p>
                             </div>
-                            <ul class="list-disc list-outside ml-5 text-gray-600 space-y-2">
-                                <li>Learned OCR, Transformer, VLM ,ANPR and other computer vision techniques and made
-                                    projects on them.</li>
-                                <li>Implemented a Person-with-Harness Detection system using YOLO-based object detection
-                                    models to ensure worker safety compliance.</li>
-                                <li>Designed a Conveyor Belt Monitoring System to detect material presence and belt
-                                    movement status (Moving / Not Moving) using vision-based analysis.</li>
-                                <li>Performed dataset preparation, annotation, preprocessing, model training, and
-                                    evaluation for ANPR .</li>
-                                <li>Optimized real-time inference pipelines using Python and OpenCV for industrial video
-                                    streams for edge deployment on Jetson .</li>
-                            </ul>
+                            <span class="experience-period">Jan 2026 – Present</span>
                         </div>
-                    </div>
+                        <ul class="list-disc list-outside ml-5 text-gray-600 space-y-2">
+                            <li>Learned OCR, Transformers, VLMs, ANPR, and other computer vision techniques through applied projects.</li>
+                            <li>Built a YOLO-based person-with-harness detection system to support worker-safety compliance.</li>
+                            <li>Designed vision-based conveyor monitoring to detect material presence and belt movement.</li>
+                            <li>Prepared, annotated, and evaluated datasets for automatic number plate recognition (ANPR).</li>
+                            <li>Optimized Python and OpenCV inference pipelines for industrial video and Jetson edge deployment.</li>
+                        </ul>
+                    </article>
 
                     <!-- Experience 2 -->
-                    <div class="mb-10 ml-6 md:ml-8 relative">
-                        <div
-                            class="absolute -left-[1.8rem] md:-left-[2.3rem] mt-1.5 w-6 h-6 rounded-full bg-blue-600 border-4 border-white shadow">
-                        </div>
-                        <div class="bg-gray-50 p-6 rounded-xl shadow-md card-hover transition duration-300">
-                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-800">Avionics Engineer</h3>
-                                    <p class="text-blue-600 font-medium">AeroKLE Aero-Design Team, Hubli</p>
-                                </div>
-                                <div
-                                    class="mt-2 md:mt-0 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold inline-block">
-                                    May 2024 – Nov 2025
-                                </div>
+                    <article class="experience-card">
+                        <div class="experience-card-heading">
+                            <div class="experience-card-title">
+                                <span class="experience-index">02 / ENGINEERING</span>
+                                <h3 class="text-xl font-bold text-gray-800">Avionics Engineer</h3>
+                                <p class="text-blue-600 font-medium">AeroKLE Aero-Design Team, Hubli</p>
                             </div>
-                            <ul class="list-disc list-outside ml-5 text-gray-600 space-y-2">
-                                <li>Contributed to the development of a semi-autonomous drone for surveillance and
-                                    disaster
-                                    management applications.</li>
-                                <li>Developed and integrated autonomous path-planning algorithms for drone navigation.
-                                </li>
-                                <li>Worked on simulation and testing of autonomous systems using ROS and Gazebo.</li>
-                                <li>Integrated Computer Vision modules for hotspot detection and object-based
-                                    navigation.
-                                </li>
-                                <li>Secured AIR 3 in SAE AeroTHON 2024 and AIR 2 in SAE ADDC 2024 as part of the
-                                    Avionics
-                                    subsystem team.</li>
-                            </ul>
+                            <span class="experience-period">May 2024 – Nov 2025</span>
                         </div>
-                    </div>
+                        <ul class="list-disc list-outside ml-5 text-gray-600 space-y-2">
+                            <li>Developed a semi-autonomous drone for surveillance and disaster-management missions.</li>
+                            <li>Built and integrated autonomous path-planning algorithms for drone navigation.</li>
+                            <li>Simulated and tested autonomous systems using ROS and Gazebo; integrated vision for hotspot detection and object-based navigation.</li>
+                            <li>Earned AIR 3 at SAE AeroTHON 2024 and AIR 2 at SAE ADDC 2024 as part of the avionics team.</li>
+                        </ul>
+                    </article>
 
                     <!-- Experience 3 -->
-                    <div class="mb-10 ml-6 md:ml-8 relative">
-                        <div
-                            class="absolute -left-[1.8rem] md:-left-[2.3rem] mt-1.5 w-6 h-6 rounded-full bg-blue-600 border-4 border-white shadow">
-                        </div>
-                        <div class="bg-gray-50 p-6 rounded-xl shadow-md card-hover transition duration-300">
-                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-800">Avionics Intern</h3>
-                                    <p class="text-blue-600 font-medium">AeroKLE Aero-Design Team, Hubli</p>
-                                </div>
-                                <div
-                                    class="mt-2 md:mt-0 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold inline-block">
-                                    Dec 2023 – May 2024
-                                </div>
+                    <article class="experience-card">
+                        <div class="experience-card-heading">
+                            <div class="experience-card-title">
+                                <span class="experience-index">03 / EARLY CAREER</span>
+                                <h3 class="text-xl font-bold text-gray-800">Avionics Intern</h3>
+                                <p class="text-blue-600 font-medium">AeroKLE Aero-Design Team, Hubli</p>
                             </div>
-                            <ul class="list-disc list-outside ml-5 text-gray-600 space-y-2">
-                                <li>Assisted in UAV avionics system design and flight-control architecture development.
-                                </li>
-                                <li>Configured drones using Mission Planner for waypoint navigation and telemetry setup.
-                                </li>
-                                <li>Integrated Raspberry Pi 4/5 boards with sensors and communication modules for
-                                    onboard
-                                    processing.</li>
-                                <li>Gained hands-on experience in UAV systems, embedded programming, and autonomous
-                                    flight
-                                    operations.</li>
-                            </ul>
+                            <span class="experience-period">Dec 2023 – May 2024</span>
                         </div>
-                    </div>
-
+                        <ul class="list-disc list-outside ml-5 text-gray-600 space-y-2">
+                            <li>Supported UAV avionics design and flight-control architecture development.</li>
+                            <li>Configured waypoint missions and telemetry in Mission Planner.</li>
+                            <li>Integrated Raspberry Pi 4/5 boards with onboard sensors and communication modules.</li>
+                            <li>Built hands-on experience in embedded programming and autonomous flight operations.</li>
+                        </ul>
+                    </article>
                 </div>
             </div>
         </section>
@@ -1485,7 +1402,7 @@
                         class="bg-gray-100 p-6 rounded-xl text-center card-hover transition duration-300 fade-in delay-1">
                         <i class="fas fa-envelope text-blue-600 text-5xl mb-4"></i>
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Email Me</h3>
-                        <p class="text-gray-600 mb-4">arihantappannavar@gmail.com</p>
+                        <p class="contact-email text-gray-600 mb-4">arihantappannavar@gmail.com</p>
                         <a href="mailto:arihantappannavar@gmail.com" class="text-blue-600 hover:text-blue-800">Send
                             Email</a>
                     </div>
@@ -1513,17 +1430,31 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p>&copy; 2025 Arihant. All rights reserved.</p>
+            <p>&copy; 2026 Arihant. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- Back to Top Button -->
     <button id="back-to-top"
-        class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center transition opacity-0 invisible hover:bg-blue-700">
+        class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center transition opacity-0 invisible hover:bg-blue-700"
+        aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="js/script.js"></script>
+    <aside id="scroll-simulation-prompt" class="scroll-simulation-prompt" hidden
+        aria-label="Simulation Lab shortcut">
+        <div class="scroll-prompt-icon" aria-hidden="true"><i class="fas fa-play"></i></div>
+        <div class="scroll-prompt-copy">
+            <strong>Want the full telemetry view?</strong>
+            <a href="simulation.html">Open the Simulation HUD <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <button class="scroll-prompt-close" type="button" aria-label="Dismiss Simulation Lab suggestion">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+    </aside>
+
+    <script src="assets/js/site-effects.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

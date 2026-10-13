@@ -23,15 +23,30 @@
   
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/simulation.css">
+  <link rel="stylesheet" href="assets/css/simulation.css">
+  <link rel="stylesheet" href="assets/css/site-effects.css">
+  <script>
+    const initialTheme = localStorage.getItem('portfolio-theme');
+    if (initialTheme === 'light' || initialTheme === 'dark') {
+      document.documentElement.dataset.theme = initialTheme;
+    }
+  </script>
 </head>
 <body>
 
   <!-- Top Global Navigation Bar (Aerothon Site Standard) -->
   <nav>
     <div class="nav-container">
-      <div class="logo">Aerothon 2025</div>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <div class="nav-brand-group">
+        <div class="logo">Aerothon 2025</div>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme"
+          aria-pressed="false">
+          <i class="fas fa-sun" aria-hidden="true"></i>
+          <span data-theme-label>Light mode</span>
+        </button>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation"
+        aria-controls="nav-links" aria-expanded="false">
         <i class="fas fa-bars"></i>
       </button>
       <ul class="nav-links" id="nav-links">
@@ -474,6 +489,7 @@
     </div>
   </div>
 
-  <script src="js/simulation.js"></script>
+  <script src="assets/js/site-effects.js"></script>
+  <script src="assets/js/simulation.js"></script>
 </body>
 </html>

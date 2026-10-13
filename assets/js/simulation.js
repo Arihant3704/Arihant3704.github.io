@@ -230,6 +230,7 @@ function initNavigation() {
   if (navToggle && navLinks) {
     navToggle.addEventListener("click", () => {
       navLinks.classList.toggle("active");
+      navToggle.setAttribute("aria-expanded", String(navLinks.classList.contains("active")));
       const icon = navToggle.querySelector("i");
       if (icon) {
         if (navLinks.classList.contains("active")) {
@@ -247,6 +248,7 @@ function initNavigation() {
     links.forEach(link => {
       link.addEventListener("click", () => {
         navLinks.classList.remove("active");
+        navToggle.setAttribute("aria-expanded", "false");
         const icon = navToggle.querySelector("i");
         if (icon) {
           icon.classList.remove("fa-times");
@@ -259,6 +261,7 @@ function initNavigation() {
     document.addEventListener("click", (e) => {
       if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
         navLinks.classList.remove("active");
+        navToggle.setAttribute("aria-expanded", "false");
         const icon = navToggle.querySelector("i");
         if (icon) {
           icon.classList.remove("fa-times");

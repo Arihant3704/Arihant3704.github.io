@@ -1,0 +1,208 @@
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-left: 0.8rem;
+  padding: 0.5rem 0.72rem;
+  color: var(--portfolio-ink, var(--text-dark, #fbf7ff));
+  background: var(--portfolio-yellow, var(--primary, #ffe36e));
+  border: 2px solid var(--portfolio-outline, var(--border-glow, #f3edff));
+  border-radius: 999px;
+  box-shadow: 2px 2px 0 var(--portfolio-outline, var(--border-glow, #f3edff));
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 220ms ease;
+}
+
+.theme-toggle:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--portfolio-outline, var(--border-glow, #f3edff));
+}
+
+.theme-toggle:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--portfolio-outline, var(--border-glow, #f3edff));
+}
+
+.cursor-orbit,
+.cursor-trail {
+  position: fixed;
+  z-index: 10001;
+  pointer-events: none;
+}
+
+.cursor-orbit {
+  top: 0;
+  left: 0;
+  width: 2rem;
+  height: 2rem;
+  border: 1.5px solid var(--portfolio-violet, var(--accent, #ff68ad));
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 120ms ease, width 180ms ease, height 180ms ease;
+}
+
+.cursor-orbit::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.35rem;
+  height: 0.35rem;
+  content: "";
+  background: var(--portfolio-lime, var(--primary, #caff36));
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+body.cursor-active .cursor-orbit {
+  opacity: 0.85;
+}
+
+body:has(a:hover, button:hover) .cursor-orbit {
+  width: 2.65rem;
+  height: 2.65rem;
+}
+
+.cursor-trail {
+  width: 0.42rem;
+  height: 0.42rem;
+  background: var(--portfolio-lime, var(--primary, #caff36));
+  border: 1px solid var(--portfolio-outline, var(--text-dark, #160f2c));
+  border-radius: 50%;
+  animation: cursor-drift 420ms ease-out forwards;
+}
+
+.cursor-trail-1 {
+  background: var(--portfolio-violet, var(--accent, #ff68ad));
+}
+
+.cursor-trail-2 {
+  background: var(--portfolio-sky, var(--success, #79caff));
+}
+
+@keyframes cursor-drift {
+  to {
+    opacity: 0;
+    transform: translate(-12px, -18px) scale(0.25);
+  }
+}
+
+.scroll-simulation-prompt {
+  position: fixed;
+  z-index: 9998;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: min(24rem, calc(100vw - 2rem));
+  padding: 0.9rem 1rem;
+  color: var(--portfolio-ink, #fbf7ff);
+  background: var(--portfolio-paper, #281e45);
+  border: 2px solid var(--portfolio-outline, #f3edff);
+  border-radius: 1rem;
+  box-shadow: 4px 4px 0 var(--portfolio-outline, #f3edff);
+  animation: scroll-prompt-arrive 260ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.scroll-simulation-prompt[hidden] {
+  display: none;
+}
+
+.scroll-prompt-icon {
+  display: grid;
+  flex: 0 0 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #160f2c;
+  background: var(--portfolio-lime, #caff36);
+  border-radius: 0.75rem;
+  place-items: center;
+}
+
+.scroll-prompt-copy {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.scroll-prompt-copy strong {
+  font-size: 0.9rem;
+}
+
+.scroll-prompt-copy a {
+  color: var(--portfolio-link, var(--portfolio-lime, #caff36));
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.scroll-prompt-copy a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.scroll-prompt-close {
+  align-self: flex-start;
+  margin: -0.35rem -0.3rem 0 auto;
+  padding: 0.25rem;
+  color: var(--portfolio-muted, #c9bce8);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.scroll-prompt-close:hover {
+  color: var(--portfolio-ink, #fbf7ff);
+}
+
+@keyframes scroll-prompt-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    gap: 0.35rem;
+    margin-left: 0.45rem;
+    padding: 0.45rem 0.55rem;
+    font-size: 0.7rem;
+  }
+
+  .scroll-simulation-prompt {
+    left: 0.75rem;
+    bottom: 0.75rem;
+    width: min(23rem, calc(100vw - 1.5rem));
+  }
+
+  .nav-container .theme-toggle span {
+    display: none;
+  }
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-orbit,
+  .cursor-trail {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .scroll-simulation-prompt {
+    transition: none;
+    animation: none;
+  }
+}

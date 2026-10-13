@@ -5,6 +5,7 @@ const mobileMenu = document.getElementById('mobile-menu');
 if (menuBtn && mobileMenu) {
     menuBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
+        menuBtn.setAttribute('aria-expanded', String(!mobileMenu.classList.contains('hidden')));
     });
 
     // Close mobile menu when any link inside it is clicked
@@ -12,6 +13,7 @@ if (menuBtn && mobileMenu) {
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
+            menuBtn.setAttribute('aria-expanded', 'false');
         });
     });
 }
@@ -33,7 +35,7 @@ if (backToTopBtn) {
     backToTopBtn.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth'
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
         });
     });
 }
@@ -67,12 +69,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
             targetElement.scrollIntoView({
-                behavior: 'smooth'
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
             });
             
             // Close mobile menu if open
             if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('hidden');
+                if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
             }
         }
     });
@@ -107,55 +110,84 @@ document.querySelectorAll('.group').forEach(container => {
     }
 });
 
+// Competition image lightbox
+const competitionViewer = document.getElementById('competition-image-viewer');
+const competitionViewerImage = competitionViewer?.querySelector('.competition-viewer-image');
+const competitionViewerCaption = competitionViewer?.querySelector('.competition-viewer-caption');
+
+if (competitionViewer && competitionViewerImage && competitionViewerCaption &&
+    typeof competitionViewer.showModal === 'function') {
+    document.querySelectorAll('.competition-image-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const image = button.querySelector('img');
+            if (!image) return;
+
+            const cardTitle = button.closest('.competition-card')?.querySelector('h3')?.textContent.trim();
+            competitionViewerImage.src = image.currentSrc || image.src;
+            competitionViewerImage.alt = image.alt;
+            competitionViewerCaption.textContent = cardTitle ? `${cardTitle} — ${image.alt}` : image.alt;
+            competitionViewer.showModal();
+            competitionViewer.querySelector('.competition-viewer-close')?.focus();
+        });
+    });
+
+    competitionViewer.querySelector('.competition-viewer-close')?.addEventListener('click', () => {
+        competitionViewer.close();
+    });
+
+    competitionViewer.addEventListener('click', event => {
+        if (event.target === competitionViewer) competitionViewer.close();
+    });
+}
+
 // Project Filtering Logic
 const filterButtons = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
 
 if (filterButtons.length > 0 && projectCards.length > 0) {
+    const filterStatus = document.getElementById('projects-filter-status');
+    let pendingFilterTimeout;
+
     filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active classes from all buttons
+            window.clearTimeout(pendingFilterTimeout);
             filterButtons.forEach(b => {
                 b.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
                 b.classList.add('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+                b.setAttribute('aria-pressed', String(b === btn));
             });
-            
-            // Add active classes to clicked button
+
             btn.classList.remove('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
             btn.classList.add('bg-blue-600', 'text-white', 'shadow-md');
-            
+
             const filterValue = btn.getAttribute('data-filter');
-            
+            const isVisible = card => {
+                if (filterValue === 'all') return true;
+                if (filterValue === 'featured') return card.getAttribute('data-featured') === 'true';
+                return (card.getAttribute('data-category') || '').split(' ').includes(filterValue);
+            };
+            const visibleCount = Array.from(projectCards).filter(isVisible).length;
+            if (filterStatus) {
+                filterStatus.textContent = `Showing ${visibleCount} ${visibleCount === 1 ? 'project' : 'projects'}.`;
+            }
+
+            const applyFilter = () => {
+                projectCards.forEach(card => {
+                    const shouldShow = isVisible(card);
+                    card.classList.toggle('hidden', !shouldShow);
+                    card.classList.remove('filtering-out');
+                });
+            };
+
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                applyFilter();
+                return;
+            }
+
             projectCards.forEach(card => {
-                // First fade out
-                card.style.opacity = '0';
-                card.style.transform = 'scale(0.95)';
-                card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
-                
-                setTimeout(() => {
-                    let isVisible = false;
-                    
-                    if (filterValue === 'all') {
-                        isVisible = true;
-                    } else if (filterValue === 'featured') {
-                        isVisible = card.getAttribute('data-featured') === 'true';
-                    } else {
-                        const cardCategory = card.getAttribute('data-category') || '';
-                        const categories = cardCategory.split(' ');
-                        isVisible = categories.includes(filterValue);
-                    }
-                    
-                    if (isVisible) {
-                        card.classList.remove('hidden');
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'scale(1)';
-                        }, 50);
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                }, 200);
+                card.classList.add('filtering-out');
             });
+            pendingFilterTimeout = window.setTimeout(applyFilter, 160);
         });
     });
 }
