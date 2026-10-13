@@ -591,6 +591,46 @@ footer {
     }
 }
 
+@media (min-width: 1280px) and (max-width: 1439px) {
+    nav .max-w-7xl > .flex > .xl\:hidden {
+        display: flex;
+    }
+
+    nav .hidden.xl\:flex {
+        display: none;
+    }
+
+    nav #mobile-menu:not(.hidden) {
+        display: block;
+    }
+}
+
+@media (min-width: 1440px) {
+    nav .max-w-7xl > .flex > div:first-child {
+        flex: 0 0 auto;
+        gap: 0.5rem;
+    }
+
+    nav .max-w-7xl > .flex > div:first-child > a {
+        white-space: nowrap;
+    }
+
+    nav .hidden.xl\:flex {
+        flex: 0 1 auto;
+        justify-content: flex-end;
+        gap: clamp(0.2rem, 0.35vw, 0.45rem);
+        min-width: 0;
+        margin-left: auto;
+    }
+
+    nav .hidden.xl\:flex > a {
+        flex: 0 0 auto;
+        padding-right: clamp(0.4rem, 0.52vw, 0.65rem);
+        padding-left: clamp(0.4rem, 0.52vw, 0.65rem);
+        white-space: nowrap;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
