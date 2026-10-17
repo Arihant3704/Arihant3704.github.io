@@ -35,7 +35,7 @@
             simulationPrompt.hidden = false;
         };
 
-        if ('IntersectionObserver' in window) {
+        if (typeof IntersectionObserver === 'function') {
             let hasEnteredSimulationLab = false;
             const promptObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
