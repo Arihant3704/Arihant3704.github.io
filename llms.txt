@@ -1,0 +1,45 @@
+# Arihant Appannavar
+
+> Electronics and Communication Engineering graduate focused on computer vision, AI engineering, robotics, and autonomous systems.
+
+Portfolio: https://arihant3704.github.io/
+Simulation dashboard: https://arihant3704.github.io/simulation.html
+Resume: https://arihant3704.github.io/Arihant_Resume.pdf
+GitHub: https://github.com/Arihant3704
+LinkedIn: https://www.linkedin.com/in/arihant-appannavar-6635063a0/
+
+## About
+
+Arihant Appannavar is an Electronics and Communication Engineer with experience in robotics simulation, drone avionics, computer vision, and edge AI. His portfolio includes project descriptions, competition results, technical skills, certificates, research, and contact information.
+
+## Experience
+
+- Computer Vision and Machine Learning Intern at DocketRun Technologies Pvt. Ltd. (Jan 2026–present)
+- Avionics Engineer with the AeroKLE Aero-Design Team (May 2024–Nov 2025); team results include AIR 3 at SAE AeroTHON 2024 and AIR 2 at SAE ADDC 2024
+- Avionics Intern with the AeroKLE Aero-Design Team (Dec 2023–May 2024)
+
+## Selected projects
+
+- YOLOE real-time open-category detection and edge inference
+- YOLO-World open-vocabulary object detection
+- OCR benchmarking and multimodal video event logging
+- UAV autonomy, ROS/Gazebo simulation, and flight telemetry
+- FPGA-accelerated object detection on Xilinx ZCU104
+- Computer vision and autonomous navigation for robotics platforms
+
+## Technical areas
+
+Computer vision, machine learning, Python, C++, OpenCV, YOLO, vision-language models, ROS 2, Gazebo, PX4, MAVROS, FPGA, Vitis AI, Raspberry Pi, and NVIDIA Jetson.
+
+## Pages
+
+- [Portfolio and projects](https://arihant3704.github.io/)
+- [Interactive UAV simulation dashboard](https://arihant3704.github.io/simulation.html)
+- [Robotics and UAV simulations](https://arihant3704.github.io/#simulation-lab)
+- [Experience](https://arihant3704.github.io/#experience)
+- [Research papers](https://arihant3704.github.io/#research-papers)
+
+## Contact
+
+- Email: arihantappannavar@gmail.com
+- [LinkedIn profile](https://www.linkedin.com/in/arihant-appannavar-6635063a0/)

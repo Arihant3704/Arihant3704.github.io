@@ -12,75 +12,101 @@
     <meta name="author" content="Arihant Appannavar">
     <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="U4VTdA5q-kLvpE_LGWBsD0BW8IKeppx7pnqZE_XwDgs" />
+    <link rel="canonical" href="https://arihant3704.github.io/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Arihant Appannavar">
+    <meta property="og:locale" content="en_IN">
     <meta property="og:url" content="https://arihant3704.github.io/">
     <meta property="og:title" content="Arihant Appannavar | AI, Robotics & ECE Portfolio">
     <meta property="og:description"
         content="AI, Robotics & ECE Portfolio: Electronics & Communication Engineering graduate with 2 years of experience in robotics simulation (ROS2, Gazebo) at AeroKLE, computer vision, and edge AI.">
     <meta property="og:image" content="https://arihant3704.github.io/images/Arihant.png">
+    <meta property="og:image:alt" content="Portrait of Arihant Appannavar, AI and robotics engineer">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://arihant3704.github.io/">
-    <meta property="twitter:title" content="Arihant Appannavar | AI, Robotics & ECE Portfolio">
-    <meta property="twitter:description"
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://arihant3704.github.io/">
+    <meta name="twitter:title" content="Arihant Appannavar | AI, Robotics & ECE Portfolio">
+    <meta name="twitter:description"
         content="AI, Robotics & ECE Portfolio: Electronics & Communication Engineering graduate with 2 years of experience in robotics simulation (ROS2, Gazebo) at AeroKLE, computer vision, and edge AI.">
-    <meta property="twitter:image" content="https://arihant3704.github.io/images/Arihant.png">
+    <meta name="twitter:image" content="https://arihant3704.github.io/images/Arihant.png">
+    <meta name="twitter:image:alt" content="Portrait of Arihant Appannavar, AI and robotics engineer">
 
-    <!-- Structured JSON-LD Data for AI Crawlers -->
+    <!-- Structured data describing the portfolio, profile page, and person. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Arihant Appannavar",
-      "givenName": "Arihant",
-      "familyName": "Appannavar",
-      "jobTitle": "Electronics & Communication Engineer | AI & Robotics Specialist",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "DocketRun Technologies Pvt. Ltd."
-      },
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "KLE Technological University"
-      },
-      "url": "https://arihant3704.github.io",
-      "image": "https://arihant3704.github.io/images/Arihant.png",
-      "sameAs": [
-        "https://github.com/Arihant3704",
-        "https://www.linkedin.com/in/arihant-appannavar-6635063a0/"
-      ],
-      "description": "Electronics & Communication Engineer specializing in robotics simulation, computer vision, AI engineering, and autonomous systems with 2 years of experience at AeroKLE.",
-      "knowsAbout": [
-        "Robotics",
-        "Autonomous UAV Flight Simulation",
-        "Computer Vision",
-        "YOLOv8",
-        "YOLOv11",
-        "YOLO-World",
-        "SmolVLM",
-        "Gemma LLM",
-        "Vision-Language Models (VLM)",
-        "Retrieval-Augmented Generation (RAG)",
-        "Model Quantization",
-        "Open-Vocabulary Object Detection",
-        "ROS2",
-        "Gazebo",
-        "Machine Learning",
-        "Python",
-        "C++",
-        "FPGA Object Detection",
-        "Raspberry Pi",
-        "NVIDIA Jetson Orin",
-        "Vitis AI"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://arihant3704.github.io/#website",
+          "url": "https://arihant3704.github.io/",
+          "name": "Arihant Appannavar | AI, Robotics & ECE Portfolio",
+          "inLanguage": "en-IN",
+          "publisher": { "@id": "https://arihant3704.github.io/#person" }
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://arihant3704.github.io/#profile",
+          "url": "https://arihant3704.github.io/",
+          "name": "Arihant Appannavar | AI, Robotics & ECE Portfolio",
+          "isPartOf": { "@id": "https://arihant3704.github.io/#website" },
+          "mainEntity": { "@id": "https://arihant3704.github.io/#person" },
+          "inLanguage": "en-IN"
+        },
+        {
+          "@type": "Person",
+          "@id": "https://arihant3704.github.io/#person",
+          "name": "Arihant Appannavar",
+          "givenName": "Arihant",
+          "familyName": "Appannavar",
+          "jobTitle": "Electronics & Communication Engineer | AI & Robotics Specialist",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "DocketRun Technologies Pvt. Ltd."
+          },
+          "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "KLE Technological University"
+          },
+          "url": "https://arihant3704.github.io/",
+          "image": "https://arihant3704.github.io/images/Arihant.png",
+          "mainEntityOfPage": { "@id": "https://arihant3704.github.io/#profile" },
+          "sameAs": [
+            "https://github.com/Arihant3704",
+            "https://www.linkedin.com/in/arihant-appannavar-6635063a0/"
+          ],
+          "description": "Electronics & Communication Engineer specializing in robotics simulation, computer vision, AI engineering, and autonomous systems with 2 years of experience at AeroKLE.",
+          "knowsAbout": [
+            "Robotics",
+            "Autonomous UAV Flight Simulation",
+            "Computer Vision",
+            "YOLOv8",
+            "YOLOv11",
+            "YOLO-World",
+            "SmolVLM",
+            "Gemma LLM",
+            "Vision-Language Models (VLM)",
+            "Retrieval-Augmented Generation (RAG)",
+            "Model Quantization",
+            "Open-Vocabulary Object Detection",
+            "ROS2",
+            "Gazebo",
+            "Machine Learning",
+            "Python",
+            "C++",
+            "FPGA Object Detection",
+            "Raspberry Pi",
+            "NVIDIA Jetson Orin",
+            "Vitis AI"
+          ]
+        }
       ]
     }
     </script>
     <script>
-        // Progressive enhancement: add js-enabled class before rendering to prevent animation block for non-JS scrapers
-        document.documentElement.classList.add('js-enabled');
         const initialTheme = localStorage.getItem('portfolio-theme');
         if (initialTheme === 'light' || initialTheme === 'dark') {
             document.documentElement.dataset.theme = initialTheme;
